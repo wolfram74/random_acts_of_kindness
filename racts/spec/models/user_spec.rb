@@ -5,6 +5,7 @@ RSpec.describe User, type: :model do
     # it {should have_many :followers}
     it {should have_many :categories}
     it {should have_many :tasks}
+    it {should have_many :assignments}
   end  
 
 end
