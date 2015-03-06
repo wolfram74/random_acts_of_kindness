@@ -12,7 +12,7 @@
 # 
 # 
 admin = {email: "phaugen@gmail.com", password: "placeholder", username:"admin"}
-jordan = {email: "jordan@gmail.com", password: "swordfish", username:""}
+jordan = {email: "jordan@gmail.com", password: "swordfish", username:}
 
 category1 = {name: "office kindness", description:"ways to help around the office", public: true}
 category2 = {name: "family kindness", description:"show the people you live with some courtesy", public: true}
@@ -38,3 +38,5 @@ user1.categories[1].tasks << Task.create(task3)
 user1.categories[1].tasks << Task.create(task4)
 user1.categories[2].tasks << Task.create(task1)
 user1.categories[2].tasks << Task.create(task5)
+
+
