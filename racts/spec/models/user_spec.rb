@@ -5,8 +5,10 @@ RSpec.describe User, type: :model do
     # it {should have_many :followers}
     it {should have_many :categories}
     it {should have_many :tasks}
+    it {should have_many :votes}
     it {should have_many :assignments}
     it {should have_many :subscriptions}
+
   end
 
   context "creation" do
@@ -20,7 +22,7 @@ RSpec.describe User, type: :model do
 
   context "#subscribe" do
 
-    it "users can subscribe to a category" do
+    pending "users can subscribe to a category" do
       user = Factory.build
       category_id = Category.first.id
       amount = 3
