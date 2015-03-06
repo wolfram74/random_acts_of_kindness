@@ -74,5 +74,17 @@
   margin-top: 30%;
 }
 
+/*============================*/
+
+/*===========private.html========*/
+#private_lists, #private_completed_tasks, #private_friends_list{
+  border: 3px solid tan;
+  width: 50%;
+  height: 12%;
+  padding: 3px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 8%;
+}
 
 
