@@ -38,3 +38,5 @@ user1.categories[1].tasks << Task.create(task3)
 user1.categories[1].tasks << Task.create(task4)
 user1.categories[2].tasks << Task.create(task1)
 user1.categories[2].tasks << Task.create(task5)
+
+

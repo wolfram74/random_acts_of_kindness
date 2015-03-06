@@ -4,4 +4,7 @@ class Category < ActiveRecord::Base
   has_many :tasks, through: :listings
   has_many :subscriptions
 
+  def choose_tasks(integer)
+    self.tasks.sample(integer)
+  end
 end
