@@ -4,8 +4,8 @@ class CreateCategories < ActiveRecord::Migration
       t.string :name
       t.string :description
       t.integer :cost_estimate
-      t.integer :score
-      t.boolean :public
+      t.integer :score, default: 0
+      t.boolean :public, default: true
       t.integer :user_id
       t.timestamps
     end

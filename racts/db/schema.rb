@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 20150305230101) do
     t.string   "name"
     t.string   "description"
     t.integer  "cost_estimate"
-    t.integer  "score"
-    t.boolean  "public"
+    t.integer  "score",         default: 0
+    t.boolean  "public",        default: true
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
