@@ -1,0 +1,113 @@
+pagecss.css
+
+.container, #container{
+  border: 3px dashed red;
+  width: 39%;
+  height: 100%;
+  overflow: scroll;
+  background-color: rgb(232,232,232);
+  background-color: rgba(232,232,232, 0.4);
+}
+
+
+
+
+
+/*=======homepage.html========*/
+
+#active_tasks{
+  padding: 5px;
+  text-align: center;
+  font-size: 20px;
+  border: 2px dashed blue;
+  height: 90%;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#page_turner{
+  text-align: center;
+  border: 2px solid navy;
+  height: 8%;
+  width: 20%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/*=============================*/
+
+/*=========login===============*/
+
+#raks_logo{
+  border: 3px dashed blue;
+  font-size: 30px;
+  font-family: fantasy;
+  width: 50%;
+  min-width: 75px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 3%;
+  text-align: center;
+}
+#kindness{
+  border: 3px dashed green;
+  color: navy;
+  font-weight: bolder;
+  width: 70px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#login_form, #random_act_generator, #kindness_quote{
+  border: 3px dashed orange;
+  width: 75%;
+  height: 15%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10%;
+}
+
+#kindness_quote{
+  height: 10%;
+  margin-top: 30%;
+}
+
+/*============================*/
+
+/*===========private.html========*/
+#private_lists, #private_completed_tasks, #private_friends_list{
+  border: 3px solid tan;
+  width: 50%;
+  height: 12%;
+  padding: 10px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 15%;
+}
+/*===============================*/
+
+/*============public.html===========*/
+#public_categories, #public_tasks{
+  border: 3px dashed teal;
+  width: 85%;
+  height: 40%;
+  padding: 10px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10%;
+}
+
+#public_categories_results, #public_task_results, #public_task_result_info{
+  border: 3px dashed maroon;
+  width: 90%;
+  height: 35%;
+  padding: 10px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10%;
+}
+#public_task_result_info{
+  width: 80%;
+}
+/*=================================*/
