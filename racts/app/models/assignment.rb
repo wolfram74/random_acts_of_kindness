@@ -4,6 +4,6 @@ class Assignment < ActiveRecord::Base
   belongs_to :category
 
   def self.active_assignments(args)
-    active = Assignment
+    active = Assignment.where(user_id: args[:user_id], )
   end
 end
