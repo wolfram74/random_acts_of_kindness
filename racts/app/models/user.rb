@@ -38,6 +38,8 @@ class User < ActiveRecord::Base
   end
 
   def update_subscriptions
-
+    self.subscriptions.each do subscription
+      subscription.update
+    end
   end
 end
