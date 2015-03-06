@@ -81,10 +81,34 @@
   border: 3px solid tan;
   width: 50%;
   height: 12%;
-  padding: 3px;
+  padding: 10px;
   margin-right: auto;
   margin-left: auto;
-  margin-top: 8%;
+  margin-top: 15%;
+}
+/*===============================*/
+
+/*============public.html===========*/
+#public_categories, #public_tasks{
+  border: 3px dashed teal;
+  width: 50%;
+  height: 40%;
+  padding: 10px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10%;
 }
 
-
+#public_categories_results, #public_task_results, #public_task_result_info{
+  border: 3px dashed maroon;
+  width: 90%;
+  height: 35%;
+  padding: 10px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10%;
+}
+#public_task_result_info{
+  width: 80%;
+}
+/*=================================*/
