@@ -1,77 +1,21 @@
-console.log('im aliiiive BITCH')
-
-
-var racts = angular.module('racts', ['ui.router']);
-
-
-racts.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
-
-	$urlRouterProvider.otherwise('/'),
-
-
-	$stateProvider
-		.state('auth', {
-			url: '/',
-			templateUrl: 'ng/templates/auth.html',
-			controller: 'authController'
-		})
-
-		.state('landingpage', {
-			views: {
-				'@': {
-					url: '/logged-in',
-					abstract: true,
-					templateUrl: 'ng/templates/landingpage.html',
-					controller: 'landingpageController'
-				}
-			}
-		})
-
-		.state('randomact', {
-			views: {
-				'@': {
-					url: '/random',
-					templateUrl: 'ng/templates/random.html',
-					controller: 'randomController'
-				}
-			}
-		})
-
-		.state('landingpage.dashboard', {
-			url: '/active-tasks',
-			templateUrl: 'ng/templates/dashboard.html',
-			controller: 'dashboardController'
-		})
-
-		.state('landingpage.private', {
-			url: '/private',
-			templateUrl: 'ng/templates/private.html',
-			controller: 'privateController'
-		})
-		.state('landingpage.public', {
-			url: '/public',
-			templateUrl: 'ng/templates/public.html',
-			controller: 'publicController'
-		})
-}]);
 
 // Users service
 
-racks.service('currentUser', function() {
+racts.service('currentUser', function() {
 	this.current_user = {}
 });
 
-racks.factory('UsersList', function() {
+racts.factory('UsersList', function() {
 	userList = []
 	return userList;
 })
 
-racks.service('UserService', ['$http', '$q', 'UsersList', function($http, $q, UsersList) {
+racts.service('UserService', ['$http', '$q', 'UsersList', function($http, $q, UsersList) {
 		var q = $q.defer();
 		getUsers = function() {
 			$http.get('http://localhost:3000/users')
 				.success( function(response) {
-					 UserList = response;
+					 UsersList = response;
 					 q.resolve(response);
 				})
 		}
@@ -81,7 +25,7 @@ racks.service('UserService', ['$http', '$q', 'UsersList', function($http, $q, Us
 		save = function(user) {
 			$http.post('http://localhost:3000/users', {user: user})
 			.success(function(response) {
-				UserList.push(response)
+				UsersList.push(response)
 				q.resolve("Resolved!")
 			})
 			.error(function(response) {
@@ -102,17 +46,17 @@ racks.service('UserService', ['$http', '$q', 'UsersList', function($http, $q, Us
 
 // Category Services
 
-racks.service('currentCategory', function() {
+racts.service('currentCategory', function() {
 	this.current_category = {}
 });
 
-racks.factory('CategoryList', function(){
+racts.factory('CategoryList', function(){
 	categoryList = []
 	return categoryList;
 });
 
 
-racks.service('CategoryService', ['$http', '$q', 'CategoryList', function($http, $q, CategoryList) {
+racts.service('CategoryService', ['$http', '$q', 'CategoryList', function($http, $q, CategoryList) {
 		var q = $q.defer();
 		getCategories = function() {
 			$http.get('http://localhost:3000/categories')
@@ -234,6 +178,11 @@ racts.controller('dashboardController', ['$http', '$log', '$scope', 'tasksServic
 
 
 }])
+
+
+
+
+
 
 racts.controller('publicController', [function(){
 
