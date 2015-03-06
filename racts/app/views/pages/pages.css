@@ -39,3 +39,40 @@
 /*=============================*/
 
 /*=========login===============*/
+
+#raks_logo{
+  border: 3px dashed blue;
+  font-size: 30px;
+  font-family: fantasy;
+  width: 50%;
+  min-width: 75px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 3%;
+  text-align: center;
+}
+#kindness{
+  border: 3px dashed green;
+  color: navy;
+  font-weight: bolder;
+  width: 70px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#login_form, #random_act_generator, #kindness_quote{
+  border: 3px dashed orange;
+  width: 75%;
+  height: 15%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10%;
+}
+
+#kindness_quote{
+  height: 10%;
+  margin-top: 30%;
+}
+
+
+
