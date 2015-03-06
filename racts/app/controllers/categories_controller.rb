@@ -1,7 +1,8 @@
 class CategoriesController < ApplicationController
   def index
     @user = User.find(params[:id])
-    @category = User.categories.all
+    @categories = User.categories.all
+    render json: @categories
   end
 
   def new
@@ -12,7 +13,7 @@ class CategoriesController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @category = @user.categories.create(category_params)
-    redirect_to categories_path(@category)
+    render json: @category
   end
 
   def edit
@@ -23,15 +24,14 @@ class CategoriesController < ApplicationController
   def update
     @user = User.find(params[:user_id])
     @category = @user.categories.update(categories_path)
-    render 'edit'
+    render json: @category
   end
 
   def destroy
     @user= User.find(params[:user_id])
     @category = @user.categories.find(params[:id])
     @category.destroy
-
-    redirect_to categories_path
+    render json: {categories: Category.all}
   end
 
   private
