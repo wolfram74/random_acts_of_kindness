@@ -17,4 +17,12 @@ class User < ActiveRecord::Base
     @password = Password.create(new_password)
     self.password_hash = @password
   end
+
+  def public_tasks #fetch public tasks that are not yours
+    # all_public = Task.where(public: true)
+  end
+
+  def active_tasks #fetch unfinished tasks
+    # active_assignments = Assignment.where(:completed_on nil)
+  end
 end
