@@ -18,5 +18,16 @@ RSpec.describe User, type: :model do
     end
   end
 
+  context "#subscribe" do
+
+    it "users can subscribe to a category" do
+      user = Factory.build
+      category_id = Category.first.id
+      amount = 3
+      period = 1
+      expect{user.subscribe(category_id, amount, period)}.to change{Subscription.count}
+    end
+
+  end
 
 end
