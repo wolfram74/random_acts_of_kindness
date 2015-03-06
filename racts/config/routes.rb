@@ -3,13 +3,23 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+  root 'categories#index'
 
-  resources :users do
-    resources :categories do
+  resources :users
+
+  resources :categories do
       resources :tasks
-    end
   end
+
+  get '/logged-in', to: 'categories#index'
+  get '/random', to: 'tasks#index'
+  get '/active-tasks', to: 'tasks#index'
+  get '/private', to: 'tasks#index'
+  get '/public', to: 'tasks#index'
+
+
+
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

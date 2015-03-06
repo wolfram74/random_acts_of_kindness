@@ -2,7 +2,9 @@ class CategoriesController < ApplicationController
   def index
     @user = User.find(params[:id])
     @categories = User.categories.all
-    render json: @categories
+    @private_categories = @categories.find_by_public(false)
+    @public_categories = @categories.find_by_public(true)
+    render json: { user: @user, categories: @categories, private_categories: @private_categories, public_categories: @public_categories}
   end
 
   def new
@@ -13,7 +15,7 @@ class CategoriesController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @category = @user.categories.create(category_params)
-    render json: @category
+    render json: {user: @user, category: @category}
   end
 
   def edit
@@ -24,14 +26,14 @@ class CategoriesController < ApplicationController
   def update
     @user = User.find(params[:user_id])
     @category = @user.categories.update(categories_path)
-    render json: @category
+    render json: {user: @user, category: @category}
   end
 
   def destroy
     @user= User.find(params[:user_id])
     @category = @user.categories.find(params[:id])
     @category.destroy
-    render json: {categories: Category.all}
+    render json: {user: @user, categories: Category.all}
   end
 
   private
