@@ -2,6 +2,7 @@ require 'bcrypt'
 
 class User < ActiveRecord::Base
   # has_many :followers, through: :relationships
+  has_many :subscriptions
   has_many :categories
   has_many :tasks
   has_many :assignments
