@@ -29,7 +29,7 @@ gem 'httparty', '~> 0.13.3'
 
 group :development, :test do
   gem 'dotenv'
-  gem 'debugger'
+  # gem 'debugger'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
