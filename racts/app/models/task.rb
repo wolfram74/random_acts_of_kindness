@@ -13,8 +13,8 @@ class Task < ActiveRecord::Base
     if args[:listing_id]
       new_assignment ={}
       new_assignment[:user_id] = args[:user_id]
-      new_assignment[:category_id] =  Listing.find_by(args[:listing_id]).category_id
-      new_assignment[:task_id] = Listing.find_by(args[:listing_id]).task_id
+      new_assignment[:category_id] =  Listing.find(args[:listing_id]).category_id
+      new_assignment[:task_id] = Listing.find(args[:listing_id]).task_id
       Assignment.create(new_assignment)
     elsif condition
     end

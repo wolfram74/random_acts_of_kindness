@@ -9,10 +9,12 @@ class Subscription < ActiveRecord::Base
     old_assignments = Assignment.where(user_id: user_id, category_id: category_id).last(limit)
     if old_assignments.length == 0
       self.assign_new_tasks
+      return
     end
-    period_elapsed = old_assignment.last.created_at < DateTime.now #- self.period.day
+    period_elapsed = old_assignments.last.created_at < DateTime.now #- self.period.day
     if period_elapsed
       self.assign_new_tasks
+      return
     end
   end
 
