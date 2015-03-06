@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
     self.password_hash = @password
   end
 
+  def subscribe
+
+  end
+
   def public_tasks #fetch public tasks that are not yours
     # all_public = Task.where(public: true)
   end

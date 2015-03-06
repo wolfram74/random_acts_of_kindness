@@ -5,4 +5,6 @@ class Task < ActiveRecord::Base
   has_many :assignments
   has_many :votes, as: :votable
 
+  
+
 end

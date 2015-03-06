@@ -22,14 +22,21 @@ RSpec.describe User, type: :model do
 
   context "#subscribe" do
 
-    pending "users can subscribe to a category" do
-      user = Factory.build
+    it "users can subscribe to a category" do
+      user = FactoryGirl.create(:user)
+      category = FactoryGirl.create(:category)
       category_id = Category.first.id
       amount = 3
       period = 1
-      expect{user.subscribe(category_id, amount, period)}.to change{Subscription.count}
+      args = {category_id: category_id, amount: amount, period: period}
+      expect{user.subscribe(args)}.to change{Subscription.count}
     end
 
+  end
+  context "meta tests" do
+    it "has a valid factory" do
+      expect(FactoryGirl.build(:user)).to be_valid
+    end
   end
 
 end
