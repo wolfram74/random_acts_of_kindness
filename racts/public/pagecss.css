@@ -1,12 +1,18 @@
 
 .container, #container{
   border: 3px dashed red;
-  width: 40%;
-  height: 100%;
+  width: 100%;
+
   overflow: scroll;
   background-color: rgb(140,189,207,);
   background-color: rgba(140,189,207, 0.4);
 }
+body{
+  width: 360px;
+  height: 640px;
+  overflow: scroll;
+}
+
 
 
 
@@ -100,13 +106,12 @@
 
 /*============public.html===========*/
 #public_categories, #public_tasks{
-  border: 3px dashed teal;
   width: 85%;
   height: 40%;
   padding: 10px;
   margin-right: auto;
   margin-left: auto;
-  margin-top: 10%;
+  margin:5%;
 }
 
 #public_categories_results, #public_task_results, #public_task_result_info{
