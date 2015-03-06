@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def index
-    @user = User.all
+    @users = User.all
+    render json: @users
   end
 
   def new
@@ -30,7 +31,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    render json: { users: User.all }
+    render json: { user: User.all }
   end
 
   private
