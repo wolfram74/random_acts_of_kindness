@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   def subscribe(args)
     args[:user_id] = self.id
     Subscription.create(args)
+    self.subscriptions.last.assign_new_tasks
   end
 
   def public_tasks #fetch public tasks that are not yours
@@ -31,10 +32,10 @@ class User < ActiveRecord::Base
 
   def active_tasks #fetch unfinished tasks
     results = Assignment.active_assignments({user_id: self.id})
-    results.map! do |assignment|
-      Task.find_by(assignment.task_id)
+    tasks = results.map do |assignment|
+      Task.find(assignment.task_id)
     end
-    return results
+    return tasks
   end
 
   def update_subscriptions

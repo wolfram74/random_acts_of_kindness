@@ -32,20 +32,30 @@ RSpec.describe User, type: :model do
       expect{user.subscribe(args)}.to change{Subscription.count}
     end
 
-    it "users subscriptions update assignments" do
+    it "users subscriptions update assignments upon creation" do
       user = FactoryGirl.create(:user)
       category = FactoryGirl.create(:category)
       category_id = category.id
       amount = 3
       period = 1
       args = {category_id: category_id, amount: amount, period: period}
-      user.subscribe(args)
       5.times{category.tasks << FactoryGirl.create(:task)}
-      expect{user.update_subscriptions}.to change{Assignment.count}
-      puts Assignment.all
+      expect{user.subscribe(args)}.to change{Assignment.count}
     end
 
+    it "users can find their active tasks" do
+      user = FactoryGirl.create(:user)
+      category = FactoryGirl.create(:category)
+      category_id = category.id
+      amount = 3
+      period = 1
+      args = {category_id: category_id, amount: amount, period: period}
+      5.times{category.tasks << FactoryGirl.create(:task)}
+      user.subscribe(args)
+      expect(user.active_tasks.length).to_not eq(0)
+    end
   end
+  
   context "meta tests" do
     it "has a valid factory" do
       expect(FactoryGirl.build(:user)).to be_valid
