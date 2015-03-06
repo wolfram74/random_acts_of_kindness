@@ -52,10 +52,10 @@ RSpec.describe User, type: :model do
       args = {category_id: category_id, amount: amount, period: period}
       5.times{category.tasks << FactoryGirl.create(:task)}
       user.subscribe(args)
-      expect(user.active_tasks.length).to_not eq(0)
+      expect(user.active_tasks[1].length).to_not eq(0)
     end
   end
-  
+
   context "meta tests" do
     it "has a valid factory" do
       expect(FactoryGirl.build(:user)).to be_valid

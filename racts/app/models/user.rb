@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
     tasks = results.map do |assignment|
       Task.find(assignment.task_id)
     end
-    return tasks
+    return [results, tasks]
   end
 
   def update_subscriptions
