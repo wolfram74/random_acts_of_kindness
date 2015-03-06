@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :categories
   has_many :tasks
   has_many :assignments
+  has_many :votes
 
   # users.password_hash in the database is a :string
   include BCrypt

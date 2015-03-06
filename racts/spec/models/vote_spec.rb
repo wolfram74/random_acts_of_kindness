@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Assignment, type: :model do
+RSpec.describe Vote, type: :model do
   context "#associations" do
 
   end
