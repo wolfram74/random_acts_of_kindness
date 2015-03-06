@@ -20,11 +20,27 @@ class User < ActiveRecord::Base
     self.password_hash = @password
   end
 
+  def subscribe(args)
+    args[:user_id] = self.id
+    Subscription.create(args)
+    self.subscriptions.last.assign_new_tasks
+  end
+
   def public_tasks #fetch public tasks that are not yours
     # all_public = Task.where(public: true)
   end
 
   def active_tasks #fetch unfinished tasks
-    # active_assignments = Assignment.where(:completed_on nil)
+    results = Assignment.active_assignments({user_id: self.id})
+    tasks = results.map do |assignment|
+      Task.find(assignment.task_id)
+    end
+    return [results, tasks]
+  end
+
+  def update_subscriptions
+    self.subscriptions.each do |subscription|
+      subscription.update
+    end
   end
 end
