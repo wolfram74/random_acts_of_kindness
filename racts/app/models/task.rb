@@ -6,11 +6,19 @@ class Task < ActiveRecord::Base
   has_many :votes, as: :votable
 
   def assign(args)
-    new_assignment ={}
-    new_assignment[:user_id] = args[:user_id]
-    new_assignment[:category_id] = args[:category_id]
-    new_assignment[:task_id] = args[:task_id]
-    Assignment.create(new_assignment)
+    if args[:user_id].nil?
+      return "error, no user id on task assignment"
+    end
+
+    if args[:listing_id]
+      new_assignment ={}
+      new_assignment[:user_id] = args[:user_id]
+      new_assignment[:category_id] =  Listing.find_by(args[:listing_id]).category_id
+      new_assignment[:task_id] = Listing.find_by(args[:listing_id]).task_id
+      Assignment.create(new_assignment)
+    elsif condition
+    end
+      
   end
 
 end

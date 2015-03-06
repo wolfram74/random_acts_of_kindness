@@ -7,4 +7,5 @@ class Assignment < ActiveRecord::Base
   def self.active_assignments(args)
     Assignment.where(user_id: args[:user_id], completed_on: nil)
   end
+
 end
