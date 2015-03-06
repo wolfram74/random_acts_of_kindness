@@ -36,4 +36,8 @@ class User < ActiveRecord::Base
     end
     return results
   end
+
+  def update_subscriptions
+
+  end
 end
