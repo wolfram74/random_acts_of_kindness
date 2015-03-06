@@ -1,12 +1,20 @@
-pagecss.css
 
 .container, #container{
-  border: 3px dashed red;
-  width: 39%;
-  height: 100%;
+  /*border: 3px dashed red;*/
+  /*width: 100%;*/
+
+ 
+  background-color: rgb(140,189,207,);
+  background-color: rgba(140,189,207, 0.4);
+}
+
+body{
   overflow: scroll;
-  background-color: rgb(232,232,232);
-  background-color: rgba(232,232,232, 0.4);
+}
+
+.navbar{
+  width: 100%;
+  height: 10%;
 }
 
 
@@ -76,7 +84,7 @@ pagecss.css
 /*============================*/
 
 /*===========private.html========*/
-#private_lists, #private_completed_tasks, #private_friends_list{
+#private_completed_tasks, #private_friends_list{
   border: 3px solid tan;
   width: 50%;
   height: 12%;
@@ -85,17 +93,29 @@ pagecss.css
   margin-left: auto;
   margin-top: 15%;
 }
+.title{
+  text-align: center;
+  background-color: #44bbcc;
+  width: 90%;
+  padding: 6px;
+  margin-right: auto;
+  margin-left: auto;
+}
+#private_lists{
+  text-align: center;
+  background-color: #88dddd;
+  color: #0055bb;
+}
 /*===============================*/
 
 /*============public.html===========*/
 #public_categories, #public_tasks{
-  border: 3px dashed teal;
   width: 85%;
   height: 40%;
   padding: 10px;
   margin-right: auto;
   margin-left: auto;
-  margin-top: 10%;
+  margin:5%;
 }
 
 #public_categories_results, #public_task_results, #public_task_result_info{

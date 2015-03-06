@@ -1,5 +1,5 @@
 
-
+<!-- 
 <div class="container" id="container">
   <div id="private_lists">
     DropDown menu for private lists here
@@ -13,4 +13,65 @@
   <div id="private_completed_tasks">
     DropDown for completed tasks
   </div>
-</div>
+</div> -->
+
+
+
+
+
+<body ng-app="ionicApp">
+  <div class="container" id="container">
+    <ion-header-bar class="bar-energized">
+      <h1 class="title">User Profile</h1>
+    </ion-header-bar>
+    <ion-content>
+    <div class="card" ng-controller='MainCtrl' ng-click="openModal()">
+      <div class="item item-divider" id="private_lists">
+        Your Lists
+      </div>
+      <div class="item item-text-wrap">
+        Office
+      </div>
+      <div class="item item-text-wrap">
+        Home
+      </div>
+      <div class="item item-text-wrap">
+        Public
+      </div>
+      <div class="item item-text-wrap">
+        Random
+      </div>
+      <div class="item item-text-wrap">
+         + new list
+      </div>
+   
+    <div class="card" ng-controller='MainCtrl' ng-click="openModal()">
+      <div class="item item-divider" id="private_lists">
+        Your friends
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+  <script id="contact-modal.html" type="text/ng-template">
+    <div class="modal">
+      <ion-header-bar>
+        <h1 class="title">Tasks</h1>
+      </ion-header-bar>
+      <ion-content>
+        <div class="list">
+          <label class="item item-input">
+            <span class="input-label">Name</span>
+            <input type="text" ng-model="contact.name">
+          </label>
+          <label class="item item-input">
+            <span class="input-label">Info</span>
+            <input type="text" ng-model="contact.info">
+          </label>
+        </div>
+
+        <button class="button button-full button-energized" ng-click="closeModal()">Done</button>
+      </ion-content>
+    </div>
+  </script>
+  </body>
