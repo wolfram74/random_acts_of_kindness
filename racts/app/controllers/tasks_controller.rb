@@ -2,7 +2,9 @@ class TasksController < ApplicationController
   def index
     @category = Category.find(params[:category_id])
     @tasks = @category.tasks.all
-    render json: {tasks: @tasks}
+    @private_tasks = @tasks.find_by_public(false)
+    @public_tasks = @tasks.find_by_public(true)
+    render json: {category: @category, tasks: @tasks, private_tasks: @private_tasks, public_tasks: @public_tasks}
   end
 
   def new
@@ -13,7 +15,7 @@ class TasksController < ApplicationController
   def create
     @category = Category.find(params[:category_id])
     @task = @category.tasks.create(task_params)
-    render json: @task
+    render json: {category: @category, task: @task}
   end
 
   def edit
@@ -24,14 +26,14 @@ class TasksController < ApplicationController
   def update
     @category = Category.find(params[:category_id])
     @task = @category.tasks.update(task_params)
-    render json: @task
+    render json: {category: @category, task: @task}
   end
 
   def destroy
     @category= Category.find(params[:category_id])
     @task = @category.tasks.find(params[:id])
     @task.destroy
-    render json: {task: Task.all}
+    render json: {category: @category, task: Task.all}
   end
 
   private

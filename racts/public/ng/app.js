@@ -10,8 +10,6 @@ racts.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
 
 
 	$stateProvider
-
-
 		.state('auth', {
 			url: '/',
 			templateUrl: 'ng/templates/auth.html',
@@ -55,10 +53,141 @@ racts.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
 			templateUrl: 'ng/templates/public.html',
 			controller: 'publicController'
 		})
-
-
-
 }]);
+
+// Users service
+
+racks.service('currentUser', function() {
+	this.current_user = {}
+});
+
+racks.factory('UsersList', function() {
+	userList = []
+	return userList;
+})
+
+racks.service('UserService', ['$http', '$q', 'UsersList', function($http, $q, UsersList) {
+		var q = $q.defer();
+		getUsers = function() {
+			$http.get('http://localhost:3000/users')
+				.success( function(response) {
+					 UserList = response;
+					 q.resolve(response);
+				})
+		}
+		getUsers();
+
+		var q = $q.defer();
+		save = function(user) {
+			$http.post('http://localhost:3000/users', {user: user})
+			.success(function(response) {
+				UserList.push(response)
+				q.resolve("Resolved!")
+			})
+			.error(function(response) {
+				q.reject("Rejected!")
+			})
+		}
+
+		this.saveUser = function(user) {
+			save(user);
+		  return q.promise
+		}
+
+		this.users = function() {
+			return UsersList
+		}
+
+}])
+
+// Category Services
+
+racks.service('currentCategory', function() {
+	this.current_category = {}
+});
+
+racks.factory('CategoryList', function(){
+	categoryList = []
+	return categoryList;
+});
+
+
+racks.service('CategoryService', ['$http', '$q', 'CategoryList', function($http, $q, CategoryList) {
+		var q = $q.defer();
+		getCategories = function() {
+			$http.get('http://localhost:3000/categories')
+			.success(function(response) {
+				categoryList = response;
+				q.resolve(response);
+			})
+		}
+
+		getCategories();
+
+		var q = $q.defer();
+		save = function(category) {
+			$http.post('http://localhost:3000/categories', {category: category})
+			.success(function(response) {
+				CategoryList.push(response)
+				q.resolve("Resolved!")
+			})
+			.error(function(response) {
+				q.reject("Rejected!")
+			})
+		}
+
+		this.saveCategory = function(category) {
+			save(category)
+			return q.promise
+		}
+
+		this.categories = function() {
+			return CategoryList
+		}
+}])
+
+// Tasks Service
+
+racts.factory('tasksList', function() {
+	tasksList = []
+	return tasksList;
+});
+
+racts.service('tasksService', ['$http', '$q', 'tasksList', 'currentCategory', function($http, $q, tasksList, currentCategory) {
+		var q = $q.defer();
+		getTasks = function() {
+			$http.get('http://localhost:3000/categories' + currentCategory.current_category.id + '/tasks')
+			.success(function(response) {
+				tasksList.push(response);
+				q.resolve(response);
+			})
+		}
+
+		getTasks();
+
+		var q = $q.defer();
+
+		save = function(task) {
+			$http.post('http://localhost:3000/categoires' + currentCategory.current_category.id + '/tasks', {task: task})
+			.success(function(response) {
+				tasksList.push(response)
+				q.resolve("Resolved!!")
+			})
+			.error(function(response) {
+				q.reject("Rejected!")
+			})
+		}
+
+		this.saveTask = function(task) {
+			save(task);
+			return q.promise
+		}
+
+		this.tasks = function() {
+			return tasksList;
+		}
+}])
+
 
 racts.controller('authController', [function(){
 
@@ -67,16 +196,41 @@ console.log('Its authController speaking!')
 
 }])
 
-racts.controller('landingpageController', [function(){
+// LandingpageController lists,and submits a new category
+racts.controller('landingpageController', ['$scope','$http', '$log', 'CategoryService', 'currentCategory',function($scope, $http, $log, CategoryService, currentCategory){
 
-console.log('Its landingpageController speaking!')
+	function mainController(categories) {
+		$scope.categories = categories
+		$scope.currentCategory = function(index) {
+			currentCategory.current_category = CategoryService.categories()[index]
+		}
 
+		$scope.newCategory = {}
+		$scope.addCategory = function() {
+			CategoryService.saveCategory($scope.newCategory)
+			$scope.newCategory = {}
+		}
+	}
 
+// console.log('Its landingpageController speaking!')
 }])
 
-racts.controller('dashboardController', [function(){
+// dashboarController lists and submits a task for a particular category
 
-console.log('Its dashboardController speaking!')
+racts.controller('dashboardController', ['$http', '$log', '$scope', 'tasksService', function($http, $log, $scope, tasksService){
+
+	function taskController(tasks) {
+		$scope.tasks = tasks;
+
+		$scope.new_task = {}
+
+		$scope.add_task = function() {
+			tasksService.saveTask($scope.new_task);
+			$scope.new_task = {}
+		}
+	}
+
+// console.log('Its dashboardController speaking!')
 
 
 }])
