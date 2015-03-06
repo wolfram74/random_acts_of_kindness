@@ -1,14 +1,12 @@
-pagecss.css
 
 .container, #container{
   border: 3px dashed red;
   width: 40%;
   height: 100%;
   overflow: scroll;
-  background-color: rgb(232,232,232);
-  background-color: rgba(232,232,232, 0.4);
+  background-color: rgb(140,189,207,);
+  background-color: rgba(140,189,207, 0.4);
 }
-
 
 
 
@@ -76,7 +74,7 @@ pagecss.css
 /*============================*/
 
 /*===========private.html========*/
-#private_lists, #private_completed_tasks, #private_friends_list{
+#private_completed_tasks, #private_friends_list{
   border: 3px solid tan;
   width: 50%;
   height: 12%;
@@ -84,6 +82,19 @@ pagecss.css
   margin-right: auto;
   margin-left: auto;
   margin-top: 15%;
+}
+.title{
+  text-align: center;
+  background-color: #44bbcc;
+  width: 90%;
+  padding: 6px;
+  margin-right: auto;
+  margin-left: auto;
+}
+#private_lists{
+  text-align: center;
+  background-color: #88dddd;
+  color: #0055bb;
 }
 /*===============================*/
 
