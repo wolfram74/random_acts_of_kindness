@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :users do
+    resources :categories do
       resources :tasks
+    end
   end
 
   # Example of regular route:
