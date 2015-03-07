@@ -12,7 +12,11 @@ class CategoriesController < ApplicationController
   end
 
   def subscribe
-
+    args = {}
+    args[:category_id] = params[:category_id]
+    args[:amount] = params[:amount]||1
+    args[:period] = params[:period]|| 4
+    User.find(params[:user_id]).subscribe(args)
   end
 
 end
