@@ -1,34 +1,30 @@
-<!-- 
+
+
 <div class="container" id="container">
-  <div id="public_categories">
-    Search categories here <br>
-    <button> search </button>
-    <div id="public_categories_results">
-      results go here
-      <div class="button">
-        <button> favorite </button>
-      </div>
+  <ion-header-bar class="bar-energized">
+  <h1 class="title">Available lists</h1>
+  </ion-header-bar>
+  <ion-content>
+  <div class="card">
+    <div class="item item-divider">
+      Available
     </div>
-  </div>
-
-  <div id="public_tasks">
-      Search Popular tasks
-    <div id="public_task_results">
-      results goes here
-      <div id="public_task_result_info">
-        info about the task goes here
-      </div>
+    <available ng-repeat="available in available"></available>
     </div>
-  </div> -->
+  </ion-content>
 
 
-  <body ng-app="ionicApp">
-  <div class="container" id="container">
+
+
+
+
+
+<!--   <div class="container" id="container">
     <ion-header-bar class="bar-energized">
       <h1 class="title">Find Random Acts</h1>
     </ion-header-bar>
     <ion-content>
-    <div class="card" ng-controller='MainCtrl' ng-click="openModal()">
+    <div class="card">
       <div class="item item-divider" id="public_categories">
         Search Categories
         <form>
@@ -40,7 +36,7 @@
       </div>
     </div>
 
-      <div class="card" ng-controller='MainCtrl' ng-click="openModal()">
+      <div class="card">
       <div class="item item-divider" id="public_categories">
         Search Popular Tasks
         <form>
@@ -52,33 +48,10 @@
       </div>
     </div>
    
-    <div class="card" ng-controller='MainCtrl' ng-click="openModal()">
+    <div class="card">
       <div class="item item-divider" id="private_lists">
         navigation goes here (swipe or page links, whatever is better for mvp)
       </div>
     </div>
   </div>
-</ion-content>
-
-  <script id="contact-modal.html" type="text/ng-template">
-    <div class="modal">
-      <ion-header-bar>
-        <h1 class="title">Tasks</h1>
-      </ion-header-bar>
-      <ion-content>
-        <div class="list">
-          <label class="item item-input">
-            <span class="input-label">Name</span>
-            <input type="text" ng-model="contact.name">
-          </label>
-          <label class="item item-input">
-            <span class="input-label">Info</span>
-            <input type="text" ng-model="contact.info">
-          </label>
-        </div>
-
-        <button class="button button-full button-energized" ng-click="closeModal()">Done</button>
-      </ion-content>
-    </div>
-  </script>
-  </body>
+</ion-content> -->

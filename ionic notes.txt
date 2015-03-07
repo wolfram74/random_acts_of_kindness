@@ -1,0 +1,92 @@
+#### IONIC ####
+
+http://learn.ionicframework.com/formulas/splash-screen/
+splash screen - loading scherm voordat app launcht:
+platforms/ios/splashscreen/Resources/splash
+meer power nodig: schakel autohide van splash screen uit:
+		adding cordova splash plugin 
+
+
+				app.run(function($cordovaSplashscreen) {
+				  setTimeout(function() {
+				    $cordovaSplashscreen.hide()
+				  }, 5000)
+				})
+
+of iets vergelijkbaars met promise. kan ook Resolve gebruiken! (elegant)
+
+
+http://learn.ionicframework.com/formulas/making-modals/
+http://adamalbrecht.com/2013/12/12/creating-a-simple-modal-dialog-directive-in-angular-js/
+angular zonder routing - onzinnig
+NOT TRUE!
+modals zijn custom directives, zoals <manipulations></manipulations> in je p10.
+werkt app.directive niet?
+
+
+http://learn.ionicframework.com/formulas/action-sheets/
+tap & hold specific options
+
+
+http://learn.ionicframework.com/formulas/pull-to-refresh/
+pull to refresh; let op digest cycle. $apply, unless promise.
+
+http://learn.ionicframework.com/formulas/navigation-bar-vs-header-bar/
+navbars en headers. pretty OK
+
+
+#### CORDOVA ####
+
+http://learn.ionicframework.com/formulas/adding-an-icon/
+phone's app icon
+
+http://learn.ionicframework.com/formulas/customizing-the-status-bar/
+
+http://learn.ionicframework.com/formulas/cordova-camera/
+API to use phones native camera
+
+
+#### ANGULARJS ####
+
+http://learn.ionicframework.com/formulas/localstorage/
+local storage (sessions?). String only.  Convert objects to json to store locally. Use factory as local storage
+
+
+http://learn.ionicframework.com/formulas/backend-data/
+$http en ngResource
+
+
+
+#### IONIC DATA ####
+
+http://learn.ionicframework.com/formulas/sharing-data-between-views/
+basic resolving with promises. Check out later how navbar updates, but probably wont even need that for our own.
+
+http://learn.ionicframework.com/formulas/data-the-right-way/
+interessante manier van controller assignen afhankelijk van resolved data. Look into this for advance angular.
+
+
+#### IONIC LISTS ####
+
+http://learn.ionicframework.com/formulas/infinite-lists/
+track by = ?  
+https://docs.angularjs.org/api/ng/directive/ngRepeat
+http://www.bennadel.com/blog/2556-using-track-by-with-ngrepeat-in-angularjs-1-2.htm
+seems to be mainly a performance thing.
+
+inifnite scroll: $broadcast completed scroll is important
+infinite lists 
+
+http://learn.ionicframework.com/videos/intro-to-lists-in-ionic/
+deleting from lists
+
+
+#### ADVANCED IONIC ####
+
+http://learn.ionicframework.com/formulas/loading-screen-with-interceptors/
+intercept $http API calls with interceptors that send out broadcast messages to control blocking loading states
+
+
+
+#### IONIC VIDS ####
+http://learn.ionicframework.com/videos/sidemenu/
