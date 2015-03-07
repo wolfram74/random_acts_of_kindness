@@ -1,5 +1,3 @@
-// Tasks Service
-
 racts.factory('activeTasksModel', [function() {
 	
 	var API = {
@@ -13,10 +11,11 @@ racts.factory('activeTasksModel', [function() {
 racts.service('activeTasksResolver', ['$http', '$q', 'activeTasksModel', function($http, $q, activeTasksModel ) {
 
 
-	var getActiveTasks = $http.get('something like user/:id/active_tasks')
+	var getActiveTasks = $http.get('http://localhost:3000/users/1/active')
 				.success(function(response) {
 					activeTasksModel.assignments = response
-					getActiveTasksDefer.resolve();
+					console.log(response)
+					console.log('success')
 				})
 				.error(function(response){
 					console.log('error with fetching active tasks. response is:')
@@ -24,7 +23,7 @@ racts.service('activeTasksResolver', ['$http', '$q', 'activeTasksModel', functio
 					activeTasksModel.assignments = 'foooz0r' // for checking purposes
 				})
 
-	return $.when(activeTasksResolver)
+	return $.when(getActiveTasks)
 
 }])
 
@@ -75,9 +74,10 @@ racts.controller('activeTasksController', ['$http', '$scope', 'activeTasksServic
 
 
 	console.log('activetaskcontroller is activated')
-	console.log('resolver works if below if fooz0r')
-	$scope.assignments = activeTasksService.activeTasksModel()
+	console.log('resolver works if below has some assignments unparsed')
+	$scope.assignments = activeTasksService.activeTasksModel().assignments
 	console.log($scope.assignments)
+
 	// function taskController(tasks) {
 	// 	$scope.tasks = tasks;
 

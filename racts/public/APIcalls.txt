@@ -1,5 +1,30 @@
-Active tasks page:
+assignments: 
 
-request: 
-I have: 
+user is subcribed to a category, so app serves the user with some tasks of that category. those specific tasks that are being served are denoted as assignments
 
+
+
+custom route active tasks  ~  'user/:id/active_task'
+receive from api:
+in json:
+
+{
+	{ assignment object in json } : {task object in json }
+
+}
+
+my list page
+
+{
+	
+	list: [ categories]
+
+
+}
+
+
+{
+	cat1 : [tasks tasks tasks]
+	cat2 : [tasks tasks tasks]
+}
+`

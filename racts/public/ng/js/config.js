@@ -34,6 +34,7 @@ racts.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
 			}
 		})
 
+
 		.state('landingpage.active', {
 			url: '/active-tasks',
 			templateUrl: 'ng/templates/active.html',
@@ -46,14 +47,58 @@ racts.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
 		.state('landingpage.private', {
 			url: '/private',
 			templateUrl: 'ng/templates/private.html',
-			controller: 'privateController'
+			controller: 'subscriptionsController',
+			resolve: {
+				subscriptionsResolver: 'subscriptionsResolver'
+			}
 		})
 		.state('landingpage.public', {
 			url: '/public',
 			templateUrl: 'ng/templates/public.html',
-			controller: 'publicController'
+			controller: 'availableController',
+			resolve: {
+				availableResolver: 'availableResolver'
+			}
 		})
 }]);
+
+
+//// CUSTOM DIRECTIVES
+
+racts.directive('activeTask', function(){
+
+	return {
+		restrict: 'AE',
+		templateUrl: 'ng/directives/activetask.html',
+		replace: true
+	}
+
+})
+
+racts.directive('subscription', function(){
+
+	return {
+		restrict: 'AE',
+		templateUrl: 'ng/directives/subscription.html',
+		replace: true
+	}
+
+})
+
+racts.directive('available', function(){
+
+	return {
+		restrict: 'AE',
+		templateUrl: 'ng/directives/available.html',
+		replace: true
+	}
+
+})
+
+
+
+
+
 
 //// ABSTRACT STATES
 
@@ -85,19 +130,8 @@ racts.controller('landingpageController', ['$scope','$http', '$log', 'CategorySe
 
 
 
-racts.controller('publicController', [function(){
-
-console.log('Its publicController speaking!')
 
 
-}])
-
-racts.controller('privateController', [function(){
-
-console.log('Its privateController speaking!')
-
-
-}])
 
 racts.controller('randomController', [function(){
 
