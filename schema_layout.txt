@@ -46,11 +46,11 @@
 <row name="email" null="1" autoincrement="0">
 <datatype>CHAR</datatype>
 <default>NULL</default></row>
-<row name="password" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<row name="password_hash" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
 <default>NULL</default></row>
-<row name="usernam" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<row name="username" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
@@ -119,7 +119,8 @@
 <table x="1314" y="442" name="listings">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
-<default>NULL</default></row>
+<default>NULL</default><relation table="assignments" row="listing_id" />
+</row>
 <row name="category_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -148,8 +149,11 @@
 <part>user_id</part>
 </key>
 </table>
-<table x="1025" y="425" name="assignments">
+<table x="1024" y="416" name="assignments">
 <row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="listing_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="user_id" null="1" autoincrement="0">
@@ -165,6 +169,7 @@
 <part>id</part>
 <part>user_id</part>
 <part>task_id</part>
+<part>listing_id</part>
 </key>
 </table>
 <table x="511" y="170" name="subscriptions">
