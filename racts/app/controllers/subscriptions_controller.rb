@@ -5,6 +5,7 @@ class SubscriptionsController < ApplicationController
     object = {}
     object[:list] = @categories
     render json: object
+    # render json: {list: "a thing"}
   end
 
   def show
@@ -12,6 +13,6 @@ class SubscriptionsController < ApplicationController
     @category = Category.find(@subscription.category_id)
     @tasks = @category.tasks
     object = {@category.to_json => @tasks.to_json}
-    render json: object 
+    render json: object
   end
 end
