@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'application#index'
+  post '/login', to: 'application#login'
   get "/users/:id/active", to: 'users#active_tasks'
   get "/users/:id", to: 'users#show'
   get "/users/:user_id/subscriptions", to: 'subscriptions#index'

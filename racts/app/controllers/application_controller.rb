@@ -5,4 +5,20 @@ class ApplicationController < ActionController::Base
 
   def index
   end
+
+  def login
+    object = {success: false,user: nil}
+    candidate = User.find_by(email: params[:credentials][:email])
+    if candidate
+      if candidate.password == params[:credentials][:password]
+        object[:success] = true
+        object[:user] = candidate.id
+        render json: object
+      else 
+        render json: object
+      end
+    else 
+      render json: object
+    end
+  end
 end
