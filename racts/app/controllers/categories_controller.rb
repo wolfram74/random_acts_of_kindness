@@ -1,10 +1,14 @@
 class CategoriesController < ApplicationController
-  def index
-    @user = User.find(params[:id])
-    @categories = User.categories.all
-    @private_categories = @categories.find_by_public(false)
-    @public_categories = @categories.find_by_public(true)
-    render json: { user: @user, categories: @categories, private_categories: @private_categories, public_categories: @public_categories}
+  def index #/categories
+    @public_categories = Category.where(public: true)
+    render json:{list: @public_categories}
+  end
+  
+  # /categories/:id
+  def show
+    @category = Category.find(params[:id])
+    @tasks = @category.tasks
+    render json: {@category.to_json => @tasks}
   end
 
   def new

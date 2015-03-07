@@ -3,9 +3,12 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'categories#index'
+  root 'application#index'
 
-  resources :users
+  resources :users do
+    resources :subscriptions
+  end
+
 
   resources :categories do
       resources :tasks
@@ -13,7 +16,8 @@ Rails.application.routes.draw do
 
   get '/logged-in', to: 'categories#index'
   get '/random', to: 'tasks#index'
-  get '/active-tasks', to: 'tasks#index'
+  get "/users/:id/active", to: 'users#active_tasks', as: :active_tasks
+  # get '/active-tasks', to: 'tasks#index'
   get '/private', to: 'tasks#index'
   get '/public', to: 'tasks#index'
 
