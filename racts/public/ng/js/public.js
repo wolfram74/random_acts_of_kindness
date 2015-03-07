@@ -1,14 +1,10 @@
 racts.factory('availableModel', [function() {
 	
-	var available = {
-		available: []
+	var data = {
+		list: []
 	}
 
-	var API = {
-		available: function(){return available}
-	}
-
-	return API;
+	return data;
 
 }]);
 
@@ -19,8 +15,7 @@ racts.service('availableResolver', ['$http', '$q', 'availableModel', function($h
 
 	var getAvailable = $http.get('http://localhost:3000/categories/')
 				.success(function(response) {
-					availableModel.available().available = response
-					console.log( availableModel.available() )
+					availableModel.list = response.list
 				})
 				.error(function(response){
 					console.log('error')
@@ -34,18 +29,8 @@ racts.service('availableResolver', ['$http', '$q', 'availableModel', function($h
 racts.service('availableService', ['$http', '$q', 'availableModel', function($http, $q, availableModel ) {
 		
 
-		var availableModel = availableModel
 
-
-
-
-		var API = {
-
-			availableModel: function(){return availableModel}
-
-		}
-
-		return API
+	this.availableModel = availableModel
 
 
 }])
@@ -54,11 +39,8 @@ racts.service('availableService', ['$http', '$q', 'availableModel', function($ht
 
 racts.controller('availableController', ['$http', '$scope', 'availableService', 'availableResolver', function($http, $scope, availableService, availableResolver){
 
+	$scope.available = availableService.availableModel.list
 
-	console.log('availableController is activated')
-	console.log('resolver works if below has some assignments unparsed')
-	$scope.available = availableService.availableModel().available().available.list
-	console.log($scope.available)
 	
 
 }])
