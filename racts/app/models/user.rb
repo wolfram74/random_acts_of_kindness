@@ -35,7 +35,11 @@ class User < ActiveRecord::Base
     tasks = results.map do |assignment|
       Task.find(assignment.task_id)
     end
-    return [results, tasks]
+    output = {}
+    results.each_with_index do |result, index|
+      output[result.to_json] = tasks[index].to_json
+    end
+    return output
   end
 
   def update_subscriptions

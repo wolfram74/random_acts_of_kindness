@@ -6,7 +6,4 @@ class Category < ActiveRecord::Base
   has_many :assignments
   has_many :votes, as: :votable
 
-  def choose_tasks(integer)
-    self.tasks.sample(integer)
-  end
 end
