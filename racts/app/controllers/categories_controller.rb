@@ -8,7 +8,7 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
     @tasks = @category.tasks
-    render json: {@category.to_json => @tasks}
+    render json: {@category.id => @tasks}
   end
 
   def subscribe
