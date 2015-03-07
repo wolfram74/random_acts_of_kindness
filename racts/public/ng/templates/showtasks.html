@@ -1,0 +1,19 @@
+
+<div class="container" id="container">
+  <ion-header-bar class="bar-energized">
+  <h1 class="title">User Profile</h1>
+  </ion-header-bar>
+  <ion-content>
+  <div class="card">
+    <div class="item item-divider">
+      Your Lists
+    </div>
+        <active-task ng-repeat="(key, value) in tasks"></active-task>
+    
+    <div class="card">
+      <div class="item item-divider" id="private_lists">
+        Your friends
+      </div>
+    </div>
+  </div>
+  </ion-content>

@@ -52,6 +52,40 @@ racts.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
 				subscriptionsResolver: 'subscriptionsResolver'
 			}
 		})
+
+
+		.state('landingpage.showtasks', {
+			params: ['tasks'],
+			views: {
+				'@': {
+					templateUrl: 'ng/templates/showtasks.html',
+					controller: 'showTasksController'
+				}
+			}
+		})
+
+
+		// .state('landingpage.private.showtasks', {
+		// 	params: ['tasks'],
+		// 	views: {
+		// 		'@landingpage': {
+		// 			templateUrl: 'ng/templates/showtasks.html',
+		// 			controller: 'showTasksController'
+		// 		}
+		// 	}
+		// })		
+		// .state('landingpage.public.showtasks', {
+		// 	params: ['tasks'],
+		// 	views: {
+		// 		'@landingpage': {
+		// 			templateUrl: 'ng/templates/showtasks.html',
+		// 			controller: 'showTasksController'
+		// 		}
+		// 	}
+		// })
+
+
+
 		.state('landingpage.public', {
 			url: '/public',
 			templateUrl: 'ng/templates/public.html',

@@ -21,7 +21,7 @@ racts.service('subscriptionsResolver', ['$http', '$q', 'subscriptionsModel', fun
 					console.log('error')
 				})
 
-	return getSubscriptions
+	$.when( getSubscriptions )
 
 }])
 
@@ -34,13 +34,52 @@ racts.service('subscriptionsService', ['$http', '$q', 'subscriptionsModel', func
 
 
 
-racts.controller('subscriptionsController', ['$http', '$scope', 'subscriptionsService', 'subscriptionsResolver', function($http, $scope, subscriptionsService, subscriptionsResolver){
+racts.controller('subscriptionsController', ['$http', '$scope', 'subscriptionsService', 'subscriptionsResolver', 'loadSubscriptionTasksService', function($http, $scope, subscriptionsService, subscriptionsResolver, loadSubscriptionTasksService){
+
+
 
 	$scope.subscriptions = subscriptionsService.subscriptionsModel.list
+
+  $scope.showTasks = function(index){
+  	var subscription = subscriptionsService.subscriptionsModel.list[index]
+  	console.log(subscription.id)
+  	loadSubscriptionTasksService.load(subscription.id)
+
+  }
 
 }])
 
 
+racts.service('loadSubscriptionTasksService', ['$state','$http', '$q', 'subscriptionsModel', 'currentUser', function($state, $http, $q, subscriptionsModel, currentUser ){
+
+
+		// this.load = function(){
+		// 	console.log('fooo loader service alive!')
+		// 	$state.go('landingpage.private.showtasks')
+		// }
+
+
+		this.load = function(id){ 
+			console.log()
+			$http.get('http://localhost:3000/categories/'+id)
+				.success(function(response) {
+					console.log(response)
+					var paramsJSON = JSON.stringify(response)
+					$state.go('landingpage.showtasks', {tasks: paramsJSON})
+
+				})
+				.error(function(response){
+					console.log('error')
+				})
+		}
+
+
+
+
+
+
+
+}])
 
 
 

@@ -10,7 +10,7 @@ racts.factory('activeTasksModel', [function() {
 
 racts.service('activeTasksResolver', ['$http', '$q', 'activeTasksModel', function($http, $q, activeTasksModel ) {
 
-
+	console.log('fooo!!!')
 	var getActiveTasks = $http.get('http://localhost:3000/users/1/active')
 				.success(function(response) {
 					activeTasksModel.assignments = response
@@ -18,7 +18,6 @@ racts.service('activeTasksResolver', ['$http', '$q', 'activeTasksModel', functio
 				.error(function(response){
 					console.log('error with fetching active tasks. response is:')
 					console.log('looong')
-					activeTasksModel.assignments = 'foooz0r' // for checking purposes
 				})
 
 	return $.when(getActiveTasks)
