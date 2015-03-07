@@ -36,8 +36,8 @@ class User < ActiveRecord::Base
       Task.find(assignment.task_id)
     end
     output = {}
-    results.each_with_index do |result, index|
-      output[result.to_json] = tasks[index].to_json
+    assignments.each_with_index do |assignment, index|
+      output[assignment.to_json] = tasks[index]
     end
     return output
   end
