@@ -33,13 +33,14 @@ class User < ActiveRecord::Base
   def active_tasks #fetch unfinished tasks
     assignments = Assignment.active_assignments({user_id: self.id})
     tasks = assignments.map do |assignment|
-      Task.find(assignment.task_id)
+      task  = Task.find(assignment.task_id)
+      task = task.to_json
+
+      new_format = JSON.parse(task)
+      new_format[:assignemnt_id] = assignment.id
+      new_format
     end
-    output = {}
-    assignments.each_with_index do |assignment, index|
-      output[assignment.id] = [ assignment, tasks[index]]
-    end
-    return output
+    return tasks
   end
 
   def update_subscriptions
