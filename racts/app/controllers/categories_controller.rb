@@ -8,41 +8,15 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
     @tasks = @category.tasks
-    render json: {@category.to_json => @tasks}
+    render json: {@category.id => @tasks}
   end
 
-  def new
-    @user = User.find(params[:user_id])
-    @category = @user.categories.new
+  def subscribe
+    args = {}
+    args[:category_id] = params[:category_id]
+    args[:amount] = params[:amount]||1
+    args[:period] = params[:period]|| 4
+    User.find(params[:user_id]).subscribe(args)
   end
 
-  def create
-    @user = User.find(params[:user_id])
-    @category = @user.categories.create(category_params)
-    render json: {user: @user, category: @category}
-  end
-
-  def edit
-    @user = User.find(params[:user_id])
-    @category = @user.categories.find(params[:id])
-  end
-
-  def update
-    @user = User.find(params[:user_id])
-    @category = @user.categories.update(categories_path)
-    render json: {user: @user, category: @category}
-  end
-
-  def destroy
-    @user= User.find(params[:user_id])
-    @category = @user.categories.find(params[:id])
-    @category.destroy
-    render json: {user: @user, categories: Category.all}
-  end
-
-  private
-
-  def category_params
-    params.require(:category).permit(:name, :description, :cost_estimate, :public)
-  end
 end

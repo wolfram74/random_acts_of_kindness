@@ -11,7 +11,7 @@ class SubscriptionsController < ApplicationController
     @subscription = Subscription.find(params[:id])
     @category = Category.find(@subscription.category_id)
     @tasks = @category.tasks
-    object = {@category.to_json => @tasks.to_json}
+    object = {@category.id => @tasks}
     render json: object 
   end
 end
