@@ -11,4 +11,8 @@ class CategoriesController < ApplicationController
     render json: {@category.to_json => @tasks}
   end
 
+  def subscribe
+
+  end
+
 end
