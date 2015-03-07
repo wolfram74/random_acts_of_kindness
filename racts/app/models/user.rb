@@ -31,8 +31,8 @@ class User < ActiveRecord::Base
   end
 
   def active_tasks #fetch unfinished tasks
-    results = Assignment.active_assignments({user_id: self.id})
-    tasks = results.map do |assignment|
+    assignments = Assignment.active_assignments({user_id: self.id})
+    tasks = assignments.map do |assignment|
       Task.find(assignment.task_id)
     end
     output = {}

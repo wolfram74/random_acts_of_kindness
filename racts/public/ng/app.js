@@ -56,7 +56,6 @@ racts.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
 }]);
 
 // Users service
-
 racks.service('currentUser', function() {
 	this.current_user = {}
 });
