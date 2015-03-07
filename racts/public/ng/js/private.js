@@ -1,13 +1,10 @@
 racts.factory('subscriptionsModel', [function() {
-	var subscriptions = {
-		subscriptions: []
+	
+	var data = {
+		list: []
 	}
 
-	var API = {
-		subscriptions: function(){return subscriptions}
-	}
-
-	return API;
+	return data
 
 }]);
 
@@ -18,8 +15,7 @@ racts.service('subscriptionsResolver', ['$http', '$q', 'subscriptionsModel', fun
 
 	var getSubscriptions = $http.get('http://localhost:3000/users/1/subscriptions')
 				.success(function(response) {
-					subscriptionsModel.subscriptions().subscriptions = response
-					console.log( subscriptionsModel.subscriptions() )
+					subscriptionsModel.list = response.list
 				})
 				.error(function(response){
 					console.log('error')
@@ -31,21 +27,8 @@ racts.service('subscriptionsResolver', ['$http', '$q', 'subscriptionsModel', fun
 
 
 racts.service('subscriptionsService', ['$http', '$q', 'subscriptionsModel', function($http, $q, subscriptionsModel ) {
-		
 
-		var subscriptionsModel = subscriptionsModel
-
-
-
-
-		var API = {
-
-			subscriptionsModel: function(){return subscriptionsModel}
-
-		}
-
-		return API
-
+		this.subscriptionsModel = subscriptionsModel
 
 }])
 
@@ -53,12 +36,7 @@ racts.service('subscriptionsService', ['$http', '$q', 'subscriptionsModel', func
 
 racts.controller('subscriptionsController', ['$http', '$scope', 'subscriptionsService', 'subscriptionsResolver', function($http, $scope, subscriptionsService, subscriptionsResolver){
 
-
-	console.log('subscriptionsController is activated')
-	console.log('resolver works if below has some assignments unparsed')
-	$scope.subscriptions = subscriptionsService.subscriptionsModel().subscriptions().subscriptions.list
-	console.log($scope.subscriptions)
-	
+	$scope.subscriptions = subscriptionsService.subscriptionsModel.list
 
 }])
 
