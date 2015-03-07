@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   get "/users/:user_id/subscriptions/:id", to: 'subscriptions#show'
   get "/categories", to: 'categories#index'
   get "/categories/:id", to: 'categories#show'
-  
+  put '/assignments/:id', to: 'assignments#complete'
+  post '/users/:user_id/categories/:id', to: 'categories#subscribe' 
 
   # resources :users do
   #   resources :subscriptions
