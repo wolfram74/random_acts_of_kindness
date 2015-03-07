@@ -34,10 +34,13 @@ racts.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
 			}
 		})
 
-		.state('landingpage.dashboard', {
+		.state('landingpage.active', {
 			url: '/active-tasks',
-			templateUrl: 'ng/templates/dashboard.html',
-			controller: 'dashboardController'
+			templateUrl: 'ng/templates/active.html',
+			controller: 'activeTasksController',
+			resolve: {
+				activeTasksResolver: 'activeTasksResolver',
+			}
 		})
 
 		.state('landingpage.private', {
@@ -51,3 +54,54 @@ racts.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
 			controller: 'publicController'
 		})
 }]);
+
+//// ABSTRACT STATES
+
+// LandingpageController lists,and submits a new category
+racts.controller('landingpageController', ['$scope','$http', '$log', 'CategoryService', 'currentCategory',function($scope, $http, $log, CategoryService, currentCategory){
+
+	// function mainController(categories) {
+	// 	$scope.categories = categories
+	// 	$scope.currentCategory = function(index) {
+	// 		currentCategory.current_category = CategoryService.categories()[index]
+	// 	}
+
+	// 	$scope.newCategory = {}
+	// 	$scope.addCategory = function() {
+	// 		CategoryService.saveCategory($scope.newCategory)
+	// 		$scope.newCategory = {}
+	// 	}
+	// }
+}])
+
+
+
+
+
+
+
+
+/////// NOT IMPLEMENTED YET
+
+
+
+racts.controller('publicController', [function(){
+
+console.log('Its publicController speaking!')
+
+
+}])
+
+racts.controller('privateController', [function(){
+
+console.log('Its privateController speaking!')
+
+
+}])
+
+racts.controller('randomController', [function(){
+
+console.log('Its randomController speaking!')
+
+
+}])
