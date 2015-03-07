@@ -8,4 +8,9 @@ RSpec.describe Category, type: :model do
     it {should have_many :subscriptions}
     it {should have_many :assignments}
   end  
+  context "meta tests" do
+    it "has a valid factory" do
+      expect(FactoryGirl.build(:category)).to be_valid
+    end
+  end
 end
