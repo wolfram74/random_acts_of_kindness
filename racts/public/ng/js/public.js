@@ -1,5 +1,5 @@
 racts.factory('availableModel', [function() {
-	
+
 	var data = {
 		list: []
 	}
@@ -28,7 +28,7 @@ racts.service('availableResolver', ['$http', '$q', 'availableModel', function($h
 
 
 racts.service('availableService', ['$http', '$q', 'availableModel', function($http, $q, availableModel ) {
-		
+
 	this.availableModel = availableModel
 
 
@@ -44,9 +44,20 @@ racts.controller('availableController', ['$http', '$scope', 'availableService', 
 	var category = availableService.availableModel.list[index]
 	console.log(category.id)
 	loadAvailableTasksService.load(category.id)
-
   }
 
+  $scope.subscribe = function(category, index) {
+  	console.log(category)
+  	console.log(index)
+  	console.log('/users/' + category.user_id + '/categories/' + category.id)
+  	$http.post('/users/' + category.user_id + '/categories/' + category.id)
+  	.success(function(response) {
+  		console.log(response)
+  	})
+  	.error(function(response) {
+  		console.log("ERROR!")
+  	})
+  }
 }])
 
 
@@ -54,7 +65,7 @@ racts.controller('availableController', ['$http', '$scope', 'availableService', 
 racts.service('loadAvailableTasksService', ['$state','$http', '$q', 'availableModel', function($state, $http, $q, availableModel ){
 
 
-		this.load = function(id){ 
+		this.load = function(id){
 			console.log()
 			$http.get('http://localhost:3000/categories/'+id)
 				.success(function(response) {
@@ -68,5 +79,5 @@ racts.service('loadAvailableTasksService', ['$state','$http', '$q', 'availableMo
 				})
 		}
 
-
 }])
+

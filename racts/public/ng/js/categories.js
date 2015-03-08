@@ -2,10 +2,6 @@ racts.service('currentCategory', function() {
 	this.current_category = {}
 });
 
-
-
-
-
 racts.factory('CategoryList', function(){
 	categoryList = []
 	return categoryList;
