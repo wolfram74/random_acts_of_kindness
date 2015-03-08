@@ -29,6 +29,15 @@ racts.service('availableResolver', ['$http', '$q', 'availableModel', function($h
 
 racts.service('availableService', ['$http', '$q', 'availableModel', function($http, $q, availableModel ) {
 
+	this.subscribe = function(category){
+	  $http.post('/users/' + category.user_id + '/categories/' + category.id)
+	  	.success(function(response) {
+	  		console.log(response)
+	  	})
+	  	.error(function(response) {
+	  		console.log("ERROR!")
+	  	})		
+	}
 	this.availableModel = availableModel
 
 
@@ -50,13 +59,7 @@ racts.controller('availableController', ['$http', '$scope', 'availableService', 
   	console.log(category)
   	console.log(index)
   	console.log('/users/' + category.user_id + '/categories/' + category.id)
-  	$http.post('/users/' + category.user_id + '/categories/' + category.id)
-  	.success(function(response) {
-  		console.log(response)
-  	})
-  	.error(function(response) {
-  		console.log("ERROR!")
-  	})
+  	availableService.subscribe(category)
   }
 }])
 
