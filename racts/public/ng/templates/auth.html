@@ -1,23 +1,36 @@
 <div class="btn-group btn-group-justified" role="group" aria-label="...">
   <div class="btn-group" role="group">
     <a ui-sref='landingpage.active'><button type="button" class="btn btn-default">Login dummy button</button></a>
+
   </div>
 </div>
 
+<div>
+  <a  ui-sref='register'><button class="btn btn-lg btn-primary btn-block" type="button" class="btn btn-default">REGISTER</button></a>
+  <form class="form-signin" action="#" method="post">
+      <h2 class="form-signin-heading"></h2>
+      <input class="form-control" type="email" name="email" placeholder="Email">
+      <input class="form-control" type="username" name="username" placeholder="Username">
+      <input class="form-control" type="password" name="password" placeholder="Password">
+    </form>
+</div>
+
+<br><br>
+
+<div class="wrapper">
+  <form class="form-signin">
+    <h2 class="form-signin-heading"></h2>
+    <button class="btn btn-lg btn-primary btn-block" ng-click='submit()'>Login</button>
+    <input type="text" class="form-control" ng-model='credentials().email' placeholder="Username" required="" autofocus="" />
+    <input type="password" class="form-control" ng-model='credentials().password' placeholder="Password" required=""/>
+    <br>
+
+  </form>
+</div>
+<br>
 
 <div class="btn-group btn-group-justified" role="group" aria-label="...">
   <div class="btn-group" role="group">
     <a ui-sref='randomact'><button type="button" class="btn btn-default">Just show me a random one</button></a>
   </div>
-</div>
-
-
-<div class="wrapper">
-  <form class="form-signin">       
-    <h2 class="form-signin-heading"></h2>
-    <input type="text" class="form-control" ng-model='credentials().email' placeholder="Username" required="" autofocus="" />
-    <input type="password" class="form-control" ng-model='credentials().password' placeholder="Password" required=""/> 
-    <br>     
-    <button class="btn btn-lg btn-primary btn-block" ng-click='submit()'>Login</button>   
-  </form>
 </div>
