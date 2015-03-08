@@ -13,7 +13,7 @@ racts.service('activeTasksResolver', ['$http', '$q', 'activeTasksModel', 'sessio
 	console.log('TESTZONE weeee')
 	console.log( session.currentUser() )
 	console.log('TESTZONE weeee ENDDD')
-	var getActiveTasks = $http.get('http://localhost:3000/users/1/active')
+	var getActiveTasks = $http.get('http://localhost:3000/users/'+session.currentUser().id+'/active')
 				.success(function(response) {
 					activeTasksModel.assignments = response
 				})
@@ -31,7 +31,7 @@ racts.service('activeTasksService', ['$http', '$q', 'activeTasksModel', function
 
 		this.activeTasksModel = activeTasksModel
 		this.complete = function(task){
-			$http.put("http://localhost:3000/assignments/" + task.assignment_id)
+			$http.put("http://localhost:3000/assignments/" + task.assignment_id+'/complete')
 				.success(function(response) {
 					console.log("DONE!")
 		    })

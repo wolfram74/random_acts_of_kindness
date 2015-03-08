@@ -10,10 +10,11 @@ racts.factory('subscriptionsModel', [function() {
 
 
 
-racts.service('subscriptionsResolver', ['$http', '$q', 'subscriptionsModel', function($http, $q, subscriptionsModel ) {
+racts.service('subscriptionsResolver', ['$http', '$q', 'subscriptionsModel', 'session', function($http, $q, subscriptionsModel, session ) {
 
+	console.log( session.currentUser() )
 
-	var getSubscriptions = $http.get('http://localhost:3000/users/1/subscriptions')
+	var getSubscriptions = $http.get('http://localhost:3000/users/'+session.currentUser().id+'/subscriptions')
 				.success(function(response) {
 					subscriptionsModel.list = response.list
 				})
@@ -51,12 +52,6 @@ racts.controller('subscriptionsController', ['$http', '$scope', 'subscriptionsSe
 
 
 racts.service('loadSubscriptionTasksService', ['$state','$http', '$q', 'subscriptionsModel', 'currentUser', function($state, $http, $q, subscriptionsModel, currentUser ){
-
-
-		// this.load = function(){
-		// 	console.log('fooo loader service alive!')
-		// 	$state.go('landingpage.private.showtasks')
-		// }
 
 
 		this.load = function(id){ 
