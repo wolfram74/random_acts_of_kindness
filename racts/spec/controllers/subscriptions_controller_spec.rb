@@ -13,7 +13,4 @@ RSpec.describe SubscriptionsController, type: :controller do
     end
  end
 
- context "post routes" do
-
- end
 end

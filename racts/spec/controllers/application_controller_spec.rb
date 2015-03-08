@@ -1,6 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe ApplicationController, type: :controller do
+  before(:each) do
+    User.delete_all
+    Category.delete_all
+    Task.delete_all
+    Subscription.delete_all
+  end
+
    describe "#index" do
      it do
       should route(:get, '/').

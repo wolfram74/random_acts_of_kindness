@@ -23,5 +23,24 @@ RSpec.describe CategoriesController, type: :controller do
       end
     end
   end
+ context "post routes" do
+  it "can subscribe to new categories" do
+    user = FactoryGirl.create(:user)
+    category = FactoryGirl.create(:category)
+    category_id = Category.first.id
+    amount = 3
+    period = 1
+    # route = "/users/%d/categories/%d" % [user.id, category_id]
+    args = { user_id:user.id, id:category.id ,amount: amount, period: period}
+    post :new_subscription, args
+    expect(JSON.parse(response.body)["status"]).to eq("success")
+
+  end
+ end
+    # post(route).should route_to("categories#subscribe", user_id: user.id, id:category_id)
+    # expect do
+    #   post(route, args )
+    # end.to change{Subscription.count}
+
 end
 
