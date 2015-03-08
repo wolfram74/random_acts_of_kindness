@@ -1,21 +1,26 @@
 
-
-<div class="wrapper">
-  <form class="form-signin">       
-    <h2 class="form-signin-heading"></h2>
-    <input type="text" class="form-control" ng-model='credentials().email' placeholder="Username" required="" autofocus="" />
-    <input type="password" class="form-control" ng-model='credentials().password' placeholder="Password" required=""/> 
-    <br>     
-    <button class="btn btn-lg btn-primary btn-block" ng-click='submit()'>Login</button>   
-  </form>
+<div>
+  <a  ui-sref='register'><button class="btn btn-lg btn-primary btn-block" type="button" class="btn btn-default">REGISTER</button></a>
+  <form class="form-signin" action="#" method="post">
+      <h2 class="form-signin-heading"></h2>
+      <input class="form-control" type="email" name="email" placeholder="Email">
+      <input class="form-control" type="username" name="username" placeholder="Username">
+      <input class="form-control" type="password" name="password" placeholder="Password">
+    </form>
 </div>
 
+<br><br>
 
-<br>
-<br>
-<br>
-<br>
+<div class="wrapper">
+  <form class="form-signin">
+    <h2 class="form-signin-heading"></h2>
+    <button class="btn btn-lg btn-primary btn-block" ng-click='submit()'>Login</button>
+    <input type="text" class="form-control" ng-model='credentials().email' placeholder="Username" required="" autofocus="" />
+    <input type="password" class="form-control" ng-model='credentials().password' placeholder="Password" required=""/>
+    <br>
 
+  </form>
+</div>
 
 <div class="btn-group btn-group-justified" role="group" aria-label="...">
   <div class="btn-group" role="group">
