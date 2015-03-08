@@ -13,8 +13,9 @@ racts.factory('availableModel', [function() {
 racts.service('availableResolver', ['$http', '$q', 'availableModel', function($http, $q, availableModel ) {
 
 
-	var getAvailable = $http.get('http://localhost:3000/categories/')
+	var getAvailable = $http.get('http://localhost:3000/categories/?param=#{session.currentUser().id}')
 				.success(function(response) {
+					console.log(response)
 					availableModel.list = response.list
 				})
 				.error(function(response){
@@ -29,7 +30,7 @@ racts.service('availableResolver', ['$http', '$q', 'availableModel', function($h
 racts.service('availableService', ['$http', '$q', 'availableModel', 'session', function($http, $q, availableModel, session ) {
 
 
-	
+
 	this.subscribe = function(category){
 	  $http.post('/users/' + session.currentUser().id + '/categories/' + category.id + '/subscribe')
 	  	.success(function(response) {
@@ -37,7 +38,7 @@ racts.service('availableService', ['$http', '$q', 'availableModel', 'session', f
 	  	})
 	  	.error(function(response) {
 	  		console.log("ERROR!")
-	  	})		
+	  	})
 	}
 	this.availableModel = availableModel
 

@@ -118,3 +118,6 @@ http://blog.thejsj.com/angular-js-authentication-with-ui-router/
 http://arthur.gonigberg.com/2013/06/29/angularjs-role-based-auth/
 */
 
+//  Register controller
+
+// racts.factory('UsersList', [''])
