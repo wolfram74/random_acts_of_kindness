@@ -10,12 +10,12 @@ racts.factory('availableModel', [function() {
 
 
 
-racts.service('availableResolver', ['$http', '$q', 'availableModel', function($http, $q, availableModel ) {
+racts.service('availableResolver', ['$http', '$q', 'availableModel','session', function($http, $q, availableModel, session ) {
+	  console.log(session.currentUser().id)
 
+		var getAvailable = $http.get('http://localhost:3000/categories/?user_id=' + session.currentUser().id)
 
-	var getAvailable = $http.get('http://localhost:3000/categories/?param=#{session.currentUser().id}')
 				.success(function(response) {
-					console.log(response)
 					availableModel.list = response.list
 				})
 				.error(function(response){
