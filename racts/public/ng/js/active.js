@@ -13,7 +13,7 @@ racts.service('activeTasksResolver', ['$http', '$q', 'activeTasksModel', 'sessio
 	console.log('TESTZONE weeee')
 	console.log( session.currentUser() )
 	console.log('TESTZONE weeee ENDDD')
-	var getActiveTasks = $http.get('http://localhost:3000/users/1/active')
+	var getActiveTasks = $http.get('http://localhost:3000/users/'+session.currentUser().id+'/active')
 				.success(function(response) {
 					activeTasksModel.assignments = response
 				})
@@ -30,24 +30,19 @@ racts.service('activeTasksResolver', ['$http', '$q', 'activeTasksModel', 'sessio
 racts.service('activeTasksService', ['$http', '$q', 'activeTasksModel', function($http, $q, activeTasksModel ) {
 
 		this.activeTasksModel = activeTasksModel
-
+		this.complete = function(task){
+			$http.put("http://localhost:3000/assignments/" + task.assignment_id+'/complete')
+				.success(function(response) {
+					console.log("DONE!")
+		    })
+		    .error(function(response) {
+		    	console.log("Rejected!")
+		    })
+			}
+		
 }])
 
-// racts.service('activeTasksComplete', ['$http', '$q', 'activeTasksModel', 'activeTasksService', function($http, $scope, activeTasksModel, activeTasksService) {
-// 	var completedTask = function(task) {
-// 			if(confirm("Are you sure?")) {
-// 				$http.put("http://localhost:3000/assignments/" + #{task.assignemnt_id})
-// 				.success(function(response) {
-// 					console.log(response)
-// 					var index =
-// 					activeTasksService.activeTasksModel.assignments.delete(task)
-// 				})
-// 				.error(function(response) {
-// 					console.log("Rejected")
-// 				})
-// 			}
-// 	}
-// }])
+
 
 racts.controller('activeTasksController', ['$http', '$scope', 'activeTasksService', function($http, $scope, activeTasksService){
 
@@ -59,14 +54,8 @@ racts.controller('activeTasksController', ['$http', '$scope', 'activeTasksServic
 				 console.log(index)
 				 console.log($scope.assignments[index].description)
 				 console.log("http://localhost:3000/assignments/" + task.assignment_id)
-				$http.put("http://localhost:3000/assignments/" + task.assignment_id)
-				.success(function(response) {
-					console.log("DONE!")
-		    })
-		    .error(function(response) {
-		    	console.log("Rejected!")
-		    })
-			}
+				 activeTasksService.complete(task)
+		}
 	}
 }])
 

@@ -27,8 +27,21 @@ racts.service('availableResolver', ['$http', '$q', 'availableModel', function($h
 }])
 
 
-racts.service('availableService', ['$http', '$q', 'availableModel', function($http, $q, availableModel ) {
+racts.service('availableService', ['$http', '$q', 'availableModel', 'session', function($http, $q, availableModel, session ) {
 
+	console.log('availablecontroller testing session')
+	console.log( session.currentUser() )
+	console.log('availablecontroller testing session END')
+	
+	this.subscribe = function(category){
+	  $http.post('/users/' + session.currentUser().id + '/categories/' + category.id + '/subscribe')
+	  	.success(function(response) {
+	  		console.log(response)
+	  	})
+	  	.error(function(response) {
+	  		console.log("ERROR!")
+	  	})		
+	}
 	this.availableModel = availableModel
 
 
@@ -40,6 +53,8 @@ racts.controller('availableController', ['$http', '$scope', 'availableService', 
 
 	$scope.available = availableService.availableModel.list
 
+
+
   $scope.showTasks = function(index){
 	var category = availableService.availableModel.list[index]
 	console.log(category.id)
@@ -49,14 +64,8 @@ racts.controller('availableController', ['$http', '$scope', 'availableService', 
   $scope.subscribe = function(category, index) {
   	console.log(category)
   	console.log(index)
-  	console.log('/users/' + category.user_id + '/categories/' + category.id)
-  	$http.post('/users/' + category.user_id + '/categories/' + category.id)
-  	.success(function(response) {
-  		console.log(response)
-  	})
-  	.error(function(response) {
-  		console.log("ERROR!")
-  	})
+  	// console.log('/users/' + session.currentUser().id + '/categories/' + category.id + '/subscribe')
+  	availableService.subscribe(category)
   }
 }])
 
