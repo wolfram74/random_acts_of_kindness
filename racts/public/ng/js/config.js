@@ -9,6 +9,7 @@ racts.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
 		.state('auth', {
 			resolve: {
 				localStorageCheck: ['$state','session', function($state, session){
+					console.log('localstoragecheck ')
 					return session.localStorageCheck().then( function(loggedIn){
 						if(loggedIn){$state.go('landingpage.active')}
 					})

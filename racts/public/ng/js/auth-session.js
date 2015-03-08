@@ -22,6 +22,7 @@ racts.service('authService', ['$http', '$q', function($http, $q){
 
 
 	this.submit = function(){
+
 		deferSubmit = $q.defer()
 		authenticate(deferSubmit)
 		return deferSubmit.promise
@@ -29,16 +30,52 @@ racts.service('authService', ['$http', '$q', function($http, $q){
 
 }])
 
-racts.controller('authController', ['$state','$scope','currentUser', 'authService','localStorageCheck', 'session', function($state, $scope, currentUser, authService, localStorageCheck, session){
+racts.service('registerService', ['$http','$q',function($http, $q){
+	console.log('yup im here alright')
+  var userDetails = { email: "", username: "", password: "", password_confirm: ""}
+  this.userDetails = function(){ return userDetails }
 
+  this.submit = function() {
+  	var q = $q.defer()
+    $http.post('http://localhost:3000/users', {credentials: userDetails})
+      .success(function(response) {
+         var currentUser = { email: userDetails.email, id: response.user}
+         q.resolve(currentUser)
+      })
+      .error(function(response) {
+        console.log("Error!")
+        q.reject(currentUser)
+      })
+      return q.promise
+    }
+
+   	console.log('yup im here alright still here bitch')
+
+
+
+}])
+
+racts.controller('authController', ['$state','$scope','currentUser', 'authService','localStorageCheck', 'session', 'registerService', function($state, $scope, currentUser, authService, localStorageCheck, session, registerService){
+		$scope.registrationDetails = registerService.userDetails
+		console.log($scope.registrationDetails)
+
+		// setInterval(function(){
+		// 	console.log( registerService.userDetails() )
+		// },5000)
 
 		$scope.credentials = authService.credentials
 		$scope.submit = function(){
 			authService.submit().then( successfullAuth, errorAuth )
 		}
 
+		$scope.submitRegister = function() {
+			registerService.submit().then( successfullAuth, errorAuth)
+		}
+
 		function successfullAuth(user){
 			session.setCurrentUser(user)
+			console.log(user)
+			console.log('registering succesfull, error is beyond this point')
 			$state.go('landingpage.active')
 
 		}
@@ -118,3 +155,6 @@ http://blog.thejsj.com/angular-js-authentication-with-ui-router/
 http://arthur.gonigberg.com/2013/06/29/angularjs-role-based-auth/
 */
 
+//  Register controller
+
+// racts.factory('UsersList', [''])
