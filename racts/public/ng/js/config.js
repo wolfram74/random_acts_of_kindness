@@ -123,7 +123,7 @@ racts.directive('available', function(){
 //// ABSTRACT STATES
 
 // LandingpageController lists,and submits a new category
-racts.controller('landingpageController', ['$state','$scope','$http', '$log', 'CategoryService', 'currentCategory','session',function($state, $scope, $http, $log, CategoryService, currentCategory, session){
+racts.controller('landingpageController', ['$state','$scope','$http','session',function($state, $scope, $http, session){
 
 
 	$scope.logOut = function(){
@@ -138,7 +138,6 @@ racts.controller('landingpageController', ['$state','$scope','$http', '$log', 'C
 racts.run(['session', '$location', function(session, $location){
 
 	if( !session.currentUser() ){
-		console.log('executed run statement')
 		$location.path('/')
 	}
 
