@@ -312,7 +312,7 @@
       "/Users/apprentice/Desktop/schoolwork/dev_bootcamp/phase_3/final_group/random_acts_of_kindness/racts/spec/factories/users.rb": [
         1,
         1,
-        10,
+        11,
         1,
         1,
         null,
@@ -643,6 +643,13 @@
         1,
         null,
         null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
         null
       ],
       "/Users/apprentice/Desktop/schoolwork/dev_bootcamp/phase_3/final_group/random_acts_of_kindness/racts/app/controllers/users_controller.rb": [
@@ -660,19 +667,21 @@
         null,
         null,
         1,
-        0,
-        0,
-        0,
-        0,
-        null,
-        0,
-        0,
+        1,
+        1,
+        1,
         0,
         null,
+        1,
+        1,
+        1,
+        1,
         0,
         null,
-        0,
-        0,
+        1,
+        1,
+        1,
+        null,
         null,
         null,
         null,
@@ -1027,8 +1036,8 @@
         null,
         null,
         1,
-        10,
-        10,
+        12,
+        12,
         null,
         null,
         1,
@@ -1076,6 +1085,6 @@
         null
       ]
     },
-    "timestamp": 1425848218
+    "timestamp": 1425850899
   }
 }
