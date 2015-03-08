@@ -5,14 +5,14 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'application#index'
   post '/login', to: 'application#login'
-  get "/users/:id/active", to: 'users#active_tasks'
-  get "/users/:id", to: 'users#show'
-  get "/users/:user_id/subscriptions", to: 'subscriptions#index'
-  get "/users/:user_id/subscriptions/:id", to: 'subscriptions#show'
+  get "/users/:id/active", to: 'users#active_tasks' , as: 'active_tasks'
+  get "/users/:id", to: 'users#show' #, as: ''
+  get "/users/:user_id/subscriptions", to: 'subscriptions#index' , as: 'subscriptions'
+  get "/users/:user_id/subscriptions/:id", to: 'subscriptions#show' #, as: ''
   get "/categories", to: 'categories#index'
-  get "/categories/:id", to: 'categories#show'
-  put '/assignments/:id', to: 'assignments#complete'
-  post '/users/:user_id/categories/:id', to: 'categories#subscribe' 
+  get "/categories/:id", to: 'categories#show' #, as: ''
+  put '/assignments/:id', to: 'assignments#complete' , as: 'complete_assignment'
+  post '/users/:user_id/categories/:id', to: 'categories#subscribe'  , as: 'new_subscription'
 
   # resources :users do
   #   resources :subscriptions
