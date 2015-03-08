@@ -54,12 +54,7 @@ racts.controller('authController', ['$state','$scope','currentUser', 'authServic
 
 
 racts.service('session', ['$q', 'currentUser', function($q, currentUser){
-<<<<<<< HEAD
-	
-	
-=======
 
->>>>>>> master
 	function getLocal(){
 		var localStorage = window.localStorage['currentUser']
 		if ( localStorage ){
