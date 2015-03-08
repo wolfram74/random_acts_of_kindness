@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "/users/:id/active", to: 'users#active_tasks' , as: 'active_tasks'
   get "/users/:id", to: 'users#show'
   get "/users/:user_id/subscriptions", to: 'subscriptions#index' , as: 'subscriptions'
+  post "/users", to: 'users#create'
   get "/users/:user_id/subscriptions/:id", to: 'subscriptions#show' 
   get "/categories", to: 'categories#index'
   get "/categories/:id", to: 'categories#show' 
