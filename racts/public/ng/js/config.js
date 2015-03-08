@@ -8,6 +8,11 @@ racts.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
 
 	$stateProvider
 		.state('auth', {
+			resolve: {
+				localStorageCheck: ['session', function(session){
+					return session.localStorageCheck()
+				}]
+			},
 			url: '/',
 			templateUrl: 'ng/templates/auth.html',
 			controller: 'authController'
@@ -63,27 +68,6 @@ racts.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
 				}
 			}
 		})
-
-
-		// .state('landingpage.private.showtasks', {
-		// 	params: ['tasks'],
-		// 	views: {
-		// 		'@landingpage': {
-		// 			templateUrl: 'ng/templates/showtasks.html',
-		// 			controller: 'showTasksController'
-		// 		}
-		// 	}
-		// })		
-		// .state('landingpage.public.showtasks', {
-		// 	params: ['tasks'],
-		// 	views: {
-		// 		'@landingpage': {
-		// 			templateUrl: 'ng/templates/showtasks.html',
-		// 			controller: 'showTasksController'
-		// 		}
-		// 	}
-		// })
-
 
 
 		.state('landingpage.public', {
