@@ -471,25 +471,14 @@
         1,
         1,
         1,
-        null,
-        null,
-        null,
         1,
         1,
-        null,
         2,
-        null,
-        null,
-        null,
-        null,
-        null,
         null,
         null,
         null
       ],
       "/Users/apprentice/Desktop/schoolwork/dev_bootcamp/phase_3/final_group/random_acts_of_kindness/racts/app/controllers/assignments_controller.rb": [
-        1,
-        1,
         1,
         1,
         1,
@@ -560,8 +549,7 @@
         0,
         null,
         null,
-        1,
-        1,
+        null,
         1,
         1,
         1,
@@ -599,7 +587,6 @@
         0,
         0,
         0,
-        null,
         null,
         null,
         1,
@@ -1013,15 +1000,10 @@
         null,
         null,
         1,
-        null,
-        null,
-        null,
-        1,
         1,
         1,
         3,
         3,
-        null,
         3,
         3,
         3,
@@ -1052,6 +1034,6 @@
         null
       ]
     },
-    "timestamp": 1425841314
+    "timestamp": 1425842479
   }
 }

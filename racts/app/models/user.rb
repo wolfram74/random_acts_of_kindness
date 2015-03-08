@@ -26,16 +26,11 @@ class User < ActiveRecord::Base
     self.subscriptions.last.assign_new_tasks
   end
 
-  def public_tasks #fetch public tasks that are not yours
-    # all_public = Task.where(public: true)
-  end
-
   def active_tasks #fetch unfinished tasks
     assignments = Assignment.active_assignments({user_id: self.id})
     tasks = assignments.map do |assignment|
       task  = Task.find(assignment.task_id)
       task = task.to_json
-
       new_format = JSON.parse(task)
       new_format[:assignment_id] = assignment.id
       new_format
