@@ -1,20 +1,15 @@
 {
   "RSpec": {
     "coverage": {
-<<<<<<< HEAD
       "/Users/apprentice/Desktop/shambhavi/random_acts_of_kindness/racts/spec/controllers/application_controller_spec.rb": [
-=======
-      "/Users/apprentice/Desktop/schoolwork/dev_bootcamp/phase_3/final_group/random_acts_of_kindness/racts/spec/controllers/application_controller_spec.rb": [
         1,
         null,
         1,
         1,
         1,
         1,
-        1,
-        1,
->>>>>>> b51dae03f58e51d3a70b5fae253361fac9f9c43b
-        1,
+        null,
+        null,
         null,
         null,
         1,
@@ -23,8 +18,13 @@
         1,
         1,
         1,
-        1,
         null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
         null,
         null,
         null,
@@ -420,16 +420,7 @@
         1,
         null
       ],
-<<<<<<< HEAD
       "/Users/apprentice/Desktop/shambhavi/random_acts_of_kindness/racts/app/controllers/application_controller.rb": [
-        1,
-        null,
-        null,
-        1,
-        null,
-        1,
-=======
-      "/Users/apprentice/Desktop/schoolwork/dev_bootcamp/phase_3/final_group/random_acts_of_kindness/racts/app/controllers/application_controller.rb": [
         1,
         null,
         null,
@@ -451,16 +442,11 @@
         null,
         null,
         0,
->>>>>>> b51dae03f58e51d3a70b5fae253361fac9f9c43b
         null,
         null,
         null
       ],
-<<<<<<< HEAD
       "/Users/apprentice/Desktop/shambhavi/random_acts_of_kindness/racts/spec/controllers/assignments_controller_spec.rb": [
-=======
-      "/Users/apprentice/Desktop/schoolwork/dev_bootcamp/phase_3/final_group/random_acts_of_kindness/racts/spec/controllers/assignments_controller_spec.rb": [
->>>>>>> b51dae03f58e51d3a70b5fae253361fac9f9c43b
         1,
         null,
         1,
@@ -470,7 +456,6 @@
         null,
         null,
         null,
-<<<<<<< HEAD
         null,
         null,
         null
@@ -478,13 +463,6 @@
       "/Users/apprentice/Desktop/shambhavi/random_acts_of_kindness/racts/app/controllers/assignments_controller.rb": [
         1,
         1,
-=======
-        null
-      ],
-      "/Users/apprentice/Desktop/schoolwork/dev_bootcamp/phase_3/final_group/random_acts_of_kindness/racts/app/controllers/assignments_controller.rb": [
-        1,
-        1,
->>>>>>> b51dae03f58e51d3a70b5fae253361fac9f9c43b
         0,
         null,
         null
@@ -1019,10 +997,6 @@
         null
       ]
     },
-<<<<<<< HEAD
-    "timestamp": 1425772533
-=======
-    "timestamp": 1425772537
->>>>>>> b51dae03f58e51d3a70b5fae253361fac9f9c43b
+    "timestamp": 1425774850
   }
 }
