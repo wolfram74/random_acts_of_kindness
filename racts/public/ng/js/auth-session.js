@@ -11,7 +11,8 @@ racts.service('authService', ['$http', '$q', function($http, $q){
 				defer.reject()
 			}
 			else{
-			defer.resolve(data.user)
+			var currentUser = {email: credentials.email, id: data.user}
+			defer.resolve(currentUser)
 			}
 		})
 		.error(function(){
@@ -28,22 +29,22 @@ racts.service('authService', ['$http', '$q', function($http, $q){
 
 }])
 
-racts.controller('authController', ['$scope','currentUser', 'authService','localStorageCheck', function($scope, currentUser, authService, localStorageCheck){
+racts.controller('authController', ['$scope','currentUser', 'authService','localStorageCheck', 'session', function($scope, currentUser, authService, localStorageCheck, session){
 
-console.log('Its authController speaking!')
 
-	// execute localstorage checker inside currentuser
-	// console.log(session.get())
+	console.log(session.currentUser)
+	console.log(currentUser)
+	setInterval(function(){console.log(currentUser,session.currentUser )},1000)
+
+
 	$scope.credentials = authService.credentials
-
 	$scope.submit = function(){
 		authService.submit().then( successfullAuth, errorAuth )
 	}
 
 	function successfullAuth(user){
 		console.log('weeeee!!')
-		console.log(currentUser)
-		currentUser.user = user;
+		session.setCurrentUser(user)
 
 	}
 	function errorAuth(){
@@ -56,20 +57,9 @@ console.log('Its authController speaking!')
 
 
 
-racts.service('session', ['currentUser', function(currentUser){
+racts.service('session', ['$q', 'currentUser', function($q, currentUser){
 	
-	this.localStorageCheck = function(){
-		console.log('foo. localstoragecheck is doing some work')
-
-	}
-
-
-
-	this.set = function(currentUser){
-		window.localStorage['currentUser'] = JSON.stringify(currentUser)
-	}
-
-	this.get = function(){
+	function getLocal(){
 		var localStorage = window.localStorage['currentUser']
 		if ( localStorage ){
 			return JSON.parse(localStorage)
@@ -78,6 +68,34 @@ racts.service('session', ['currentUser', function(currentUser){
 			return null
 		}
 	}
+	this.localStorageCheck = function(){
+		console.log('im working in localstorage right now')
+		var deferLocalCheck = $q.defer()
+		user = getLocal()
+		if (user){
+			setCurrentUser(user)
+			var trigger = true
+		}
+		deferLocalCheck.resolve(trigger)
+		return deferLocalCheck.promise
+	}
+
+
+
+	function setLocal(currentUser){
+		window.localStorage['currentUser'] = JSON.stringify(currentUser)
+	}
+	function setCurrentUser(user){
+		console.log('inside setCurrentUser')
+		console.log(user)
+		currentUser = user
+		setLocal(user)
+	}
+	this.setCurrentUser = setCurrentUser
+
+
+	this.currentUser = currentUser
+
 
 	
 
@@ -86,16 +104,7 @@ racts.service('session', ['currentUser', function(currentUser){
 
 racts.factory('currentUser', [function(){
 
-	// this.checkLocalStorage = function(){
-
-
-
 	var currentUser = null
-
-	// var currentUser =  {
-	// 	id: null,
-	// 	email: null
-	// }
 
 	return currentUser
 
