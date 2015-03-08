@@ -12,7 +12,6 @@ racts.factory('subscriptionsModel', [function() {
 
 racts.service('subscriptionsResolver', ['$http', '$q', 'subscriptionsModel', 'session', function($http, $q, subscriptionsModel, session ) {
 
-	console.log( session.currentUser() )
 
 	var getSubscriptions = $http.get('http://localhost:3000/users/'+session.currentUser().id+'/subscriptions')
 				.success(function(response) {
@@ -22,7 +21,7 @@ racts.service('subscriptionsResolver', ['$http', '$q', 'subscriptionsModel', 'se
 					console.log('error')
 				})
 
-	$.when( getSubscriptions )
+	return getSubscriptions
 
 }])
 
@@ -43,7 +42,6 @@ racts.controller('subscriptionsController', ['$http', '$scope', 'subscriptionsSe
 
   $scope.showTasks = function(index){
   	var subscription = subscriptionsService.subscriptionsModel.list[index]
-  	console.log(subscription.id)
   	loadSubscriptionTasksService.load(subscription.id)
 
   }
@@ -55,7 +53,7 @@ racts.service('loadSubscriptionTasksService', ['$state','$http', '$q', 'subscrip
 
 
 		this.load = function(id){ 
-			console.log()
+
 			$http.get('http://localhost:3000/categories/'+id)
 				.success(function(response) {
 					console.log(response)
