@@ -44,9 +44,20 @@ racts.controller('availableController', ['$http', '$scope', 'availableService', 
 	var category = availableService.availableModel.list[index]
 	console.log(category.id)
 	loadAvailableTasksService.load(category.id)
-
   }
 
+  $scope.subscribe = function(category, index) {
+  	console.log(category)
+  	console.log(index)
+  	console.log('/users/' + category.user_id + '/categories/' + category.id)
+  	$http.post('/users/' + category.user_id + '/categories/' + category.id)
+  	.success(function(response) {
+  		console.log(response)
+  	})
+  	.error(function(response) {
+  		console.log("ERROR!")
+  	})
+  }
 }])
 
 
@@ -68,5 +79,5 @@ racts.service('loadAvailableTasksService', ['$state','$http', '$q', 'availableMo
 				})
 		}
 
-
 }])
+
