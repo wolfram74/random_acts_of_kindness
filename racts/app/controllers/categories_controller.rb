@@ -17,6 +17,7 @@ class CategoriesController < ApplicationController
     args[:category_id] = params[:id]
     args[:amount] = params[:amount] || 1
     args[:period] = params[:period] || 4
+    p args
     User.find(params[:user_id]).subscribe(args)
     render json: {status: "success"}
   end
