@@ -1,10 +1,15 @@
-racts.controller('RegisterService', ['$http', '$log', '$scope', function($http, $log, $scope) {
-  this.registration = function(category) {
-    $http.post('')
-      .success(function(response) {
-        console.log(response)
-  })
-  .error(function(response) {
-    console.log("Error!")
-  })
-}])
+// racts.service('registerService', ['$http', '$log', '$scope', function($http, $log, $scope) {
+//   var userDetails = { email: "", username: "", password: ""}
+//   this.userDetails = function(){ return userDetails }
+
+//   this.submitRegister = function() {
+//     $http.post('http://localhost:3000/users', {userDetails: userDetails})
+//       .success(function(response) {
+//          var currentUser = { email: userDetails.email, id: response.user}
+//          authController.submitRegister(currentUser);
+//       })
+//       .error(function(response) {
+//         console.log("Error!")
+//       })
+//     }
+// }])

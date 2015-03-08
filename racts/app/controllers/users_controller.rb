@@ -14,6 +14,10 @@ class UsersController < ApplicationController
   def create
     object = {success: false,user: nil}
     password_mismatch = params[:credentials][:password] != params[:credentials][:password_confirm]
+    puts "@@@"
+    puts params[:credentials][:password_confirm]
+    puts "&&&&"
+    puts params[:credentials][:password]
     if password_mismatch
       render json: object
     else
@@ -22,7 +26,7 @@ class UsersController < ApplicationController
       new_user.save
       if new_user.errors.any?
         render json: object
-      else 
+      else
         object[:success] = true
         object[:user] = new_user.id
         render json: object
