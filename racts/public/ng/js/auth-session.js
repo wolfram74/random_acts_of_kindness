@@ -59,6 +59,7 @@ racts.controller('authController', ['$state','$scope','currentUser', 'authServic
 
 racts.service('session', ['$q', 'currentUser', function($q, currentUser){
 	
+	
 	function getLocal(){
 		var localStorage = window.localStorage['currentUser']
 		if ( localStorage ){
@@ -68,8 +69,11 @@ racts.service('session', ['$q', 'currentUser', function($q, currentUser){
 			return null
 		}
 	}
+	//devmode//
+	this.getLocal = getLocal
+	//end
 	this.localStorageCheck = function(){
-		console.log('im working in localstorage right now')
+		console.log('*****LocalStorageCheck speaking*****')
 		var deferLocalCheck = $q.defer()
 		user = getLocal()
 		var trigger = false
@@ -104,7 +108,7 @@ racts.service('session', ['$q', 'currentUser', function($q, currentUser){
 
 racts.factory('currentUser', [function(){
 
-	this.test = 'foo'
+	console.log('******currentUser activated******')
 	var currentUser = null
 
 	return currentUser
@@ -116,4 +120,5 @@ racts.factory('currentUser', [function(){
 /* 
 https://github.com/angular-ui/ui-router/issues/42
 http://blog.thejsj.com/angular-js-authentication-with-ui-router/
+http://arthur.gonigberg.com/2013/06/29/angularjs-role-based-auth/
 */

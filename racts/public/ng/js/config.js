@@ -5,7 +5,6 @@ racts.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
 
 	$urlRouterProvider.otherwise('/'),
 
-
 	$stateProvider
 		.state('auth', {
 			resolve: {
@@ -135,7 +134,14 @@ racts.controller('landingpageController', ['$state','$scope','$http', '$log', 'C
 }])
 
 
+racts.run(['session', '$location', function(session, $location){
 
+	if( !session.currentUser() ){
+		console.log('executed run statement')
+		$location.path('/')
+	}
+
+}])
 
 
 
