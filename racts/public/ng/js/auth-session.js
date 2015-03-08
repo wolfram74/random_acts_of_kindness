@@ -5,7 +5,7 @@ racts.service('authService', ['$http', '$q', function($http, $q){
 	this.credentials = function(){return credentials}
 
 	var authenticate = function(defer){
-		$http.post('/login', credentials)
+		$http.post('/login', {credentials: credentials})
 		.success(function(data){
 			if(data.success === false){
 				defer.reject()
@@ -41,8 +41,9 @@ console.log('Its authController speaking!')
 	}
 
 	function successfullAuth(user){
-		currentUser.user = user;
 		console.log('weeeee!!')
+		console.log(currentUser)
+		currentUser.user = user;
 
 	}
 	function errorAuth(){
