@@ -14,9 +14,13 @@ RSpec.describe AssignmentsController, type: :controller do
       user.subscribe(args)
       assignment = Assignment.last
       url = "assignments/%d" % assignment.id
+      #put 'complete', id: assignment.id
+      #assignment.reload
+      #expect(assignment.completed_on).to be_present
       expect{
-        put url
-      }.to change{Assignment.last}
+        put 'complete', id: assignment.id 
+        #fix the routing to be a bit more conventionally violating convention.
+      }.to change{ Assignment.last.completed_on }
       # should route(put: url).to(action: :complete, id: assignment.id)
       # expect{put :complete_assignment, {id: assignment.id}}.to change{user.active_tasks.length}
       # route = "assignments/%d" % assignment.id

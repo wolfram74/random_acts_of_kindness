@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   get "/users/:user_id/subscriptions/:id", to: 'subscriptions#show' #, as: ''
   get "/categories", to: 'categories#index'
   get "/categories/:id", to: 'categories#show' #, as: ''
-  put '/assignments/:id', to: 'assignments#complete' , as: 'complete_assignment'
-  post '/users/:user_id/categories/:id', to: 'categories#subscribe'  , as: 'new_subscription'
+  put '/assignments/:id/complete', to: 'assignments#complete' , as: 'complete_assignment'
+  post '/users/:user_id/categories/:id/subscribe', to: 'categories#subscribe'  , as: 'new_subscription'
 
   # resources :users do
   #   resources :subscriptions
