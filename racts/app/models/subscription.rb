@@ -11,7 +11,7 @@ class Subscription < ActiveRecord::Base
       self.assign_new_tasks
       return
     end
-    period_elapsed = old_assignments.last.created_at < DateTime.now #- self.period.day
+    period_elapsed = old_assignments.last.created_at < DateTime.now - self.period.day
     if period_elapsed
       self.assign_new_tasks
       return
