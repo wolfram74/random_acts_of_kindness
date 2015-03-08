@@ -1,6 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe ApplicationController, type: :controller do
+   describe "#index" do
+     it do
+      should route(:get, '/').
+      to(action: :index)
+     end
+   end
+
   describe "#login" do
     it "allows valid login" do
       test = FactoryGirl.create(:user)
@@ -14,7 +21,7 @@ RSpec.describe ApplicationController, type: :controller do
       params = {credentials:{email: test.email, password: "gofarts"}}
       post :login, params
       expect(JSON.parse(response.body)["success"]).to eq(false)
-    end
+   end
 
   end
 end
