@@ -31,10 +31,6 @@ racts.service('authService', ['$http', '$q', function($http, $q){
 
 racts.controller('authController', ['$state','$scope','currentUser', 'authService','localStorageCheck', 'session', function($state, $scope, currentUser, authService, localStorageCheck, session){
 
-	// if ( session.currentUser() ){
-	// 	$state.go('landingpage.active')
-	// } 
-	// else{
 
 		$scope.credentials = authService.credentials
 		$scope.submit = function(){
@@ -58,7 +54,7 @@ racts.controller('authController', ['$state','$scope','currentUser', 'authServic
 
 
 racts.service('session', ['$q', 'currentUser', function($q, currentUser){
-	
+
 	function getLocal(){
 		var localStorage = window.localStorage['currentUser']
 		if ( localStorage ){
@@ -94,17 +90,19 @@ racts.service('session', ['$q', 'currentUser', function($q, currentUser){
 	this.setCurrentUser = setCurrentUser
 
 
-	this.currentUser = function(){return currentUser}
+	this.currentUser = function(){
+		console.log('yes i am!')
+		console.log(currentUser)
+		return currentUser}
 
 
-	
+
 
 }])
 
 
 racts.factory('currentUser', [function(){
-
-	this.test = 'foo'
+	console.log('currentUserfactory speaking!')
 	var currentUser = null
 
 	return currentUser
@@ -113,7 +111,7 @@ racts.factory('currentUser', [function(){
 
 
 
-/* 
+/*
 https://github.com/angular-ui/ui-router/issues/42
 http://blog.thejsj.com/angular-js-authentication-with-ui-router/
 */
