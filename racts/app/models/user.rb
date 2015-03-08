@@ -43,6 +43,10 @@ class User < ActiveRecord::Base
     return tasks
   end
 
+  def subscribed_categories #fetch categories user has subscribed to
+    self.subscriptions.map {|subscription| Category.find(subscription.category_id)}
+  end
+
   def update_subscriptions
     self.subscriptions.each do |subscription|
       subscription.update

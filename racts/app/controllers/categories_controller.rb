@@ -1,6 +1,10 @@
 class CategoriesController < ApplicationController
   def index #/categories
     @public_categories = Category.where(public: true)
+    user = User.find(params[:user_id])
+    if user
+      @public_categories -= user.subscribed_categories
+    end
     render json:{list: @public_categories}
   end
   

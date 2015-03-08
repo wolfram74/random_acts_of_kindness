@@ -8,6 +8,10 @@ RSpec.describe CategoriesController, type: :controller do
         get :index
         expect(response.status).to eq 200
       end
+      it "responds with a 200" do
+        get :index, {user_id: User.last.id}
+        expect(response.status).to eq 200
+      end
     end
     describe "#index" do
       it do
