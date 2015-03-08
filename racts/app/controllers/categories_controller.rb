@@ -8,16 +8,15 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
     @tasks = @category.tasks
-    render json: @tasks#{@category.id => @tasks}
+    render json: @tasks
   end
 
+  #/users/:user_id/categories/:id/subscribe
   def subscribe
-    p params
     args = {}
     args[:category_id] = params[:id]
     args[:amount] = params[:amount] || 1
     args[:period] = params[:period] || 4
-    p args
     User.find(params[:user_id]).subscribe(args)
     render json: {status: "success"}
   end
