@@ -1,13 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-   it do
+  it "responds to active list route" do
     should route(:get, '/users/1/active').
     to(action: :active_tasks, id: 1)
-   end
+  end
 
-   it do
+  it "responds to personal user page" do
     should route(:get, '/users/1').
     to(action: :show, id: 1)
-   end
+  end
+
+  it "#create" do
+      test = FactoryGirl.build(:user)
+      params = {credentials:{email: test.email, password: "farts", password_confirm: "farts"}}
+      post "create", params
+      expect(JSON.parse(response.body)["user"]).to_not eq(nil)
+  end
 end
