@@ -10,19 +10,26 @@ racts.factory('activeTasksModel', [function() {
 
 racts.service('activeTasksResolver', ['$http', '$q', 'activeTasksModel', 'session', function($http, $q, activeTasksModel, session) {
 
-	console.log('TESTZONE weeee')
+	console.log('********** ActiveTaskResolver initiated TEST BEGIN **********')
+	console.log('currentUser in session:')
 	console.log( session.currentUser() )
-	console.log('TESTZONE weeee ENDDD')
+
+	console.log('activeTask before resolving:')
+	console.log( activeTasksModel.assignments ) 
+
+
 	var getActiveTasks = $http.get('http://localhost:3000/users/'+session.currentUser().id+'/active')
 				.success(function(response) {
 					activeTasksModel.assignments = response
+					console.log('activeTasks after API call :')
+					console.log( activeTasksModel.assignments )
 				})
 				.error(function(response){
-					console.log('error with fetching active tasks. response is:')
-					console.log('looong')
+					console.log('error with fetching active tasks')
 				})
 
-	return $.when(getActiveTasks)
+	console.log('********** ActiveTaskResolver initiated TEST END **********')
+	return getActiveTasks
 
 }])
 
@@ -47,13 +54,8 @@ racts.service('activeTasksService', ['$http', '$q', 'activeTasksModel', function
 racts.controller('activeTasksController', ['$http', '$scope', 'activeTasksService', function($http, $scope, activeTasksService){
 
 	$scope.assignments = activeTasksService.activeTasksModel.assignments
-	console.log($scope.assignments)
 	$scope.completeTask =  function(task, index) {
 			if(confirm("Are you sure?")) {
-				 console.log("hello")
-				 console.log(index)
-				 console.log($scope.assignments[index].description)
-				 console.log("http://localhost:3000/assignments/" + task.assignment_id)
 				 activeTasksService.complete(task)
 		}
 	}
