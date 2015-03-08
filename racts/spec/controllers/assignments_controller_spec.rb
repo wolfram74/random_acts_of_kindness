@@ -13,7 +13,12 @@ RSpec.describe AssignmentsController, type: :controller do
       5.times{category.tasks << FactoryGirl.create(:task)}
       user.subscribe(args)
       assignment = Assignment.last
-      expect{put :complete_assignment, {id: assignment.id}}.to change{user.active_tasks.length}
+      url = "assignments/%d" % assignment.id
+      expect{
+        put url
+      }.to change{Assignment.last}
+      # should route(put: url).to(action: :complete, id: assignment.id)
+      # expect{put :complete_assignment, {id: assignment.id}}.to change{user.active_tasks.length}
       # route = "assignments/%d" % assignment.id
       # put put_event: {id: assignment.id}
       # expect(Assignment.last.completed_on.nil?).to eq(false)
