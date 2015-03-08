@@ -9,8 +9,10 @@ racts.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
 	$stateProvider
 		.state('auth', {
 			resolve: {
-				localStorageCheck: ['session', function(session){
-					return session.localStorageCheck()
+				localStorageCheck: ['$state','session', function($state, session){
+					return session.localStorageCheck().then( function(loggedIn){
+						if(loggedIn){$state.go('landingpage.active')}
+					})
 				}]
 			},
 			url: '/',
@@ -121,20 +123,15 @@ racts.directive('available', function(){
 //// ABSTRACT STATES
 
 // LandingpageController lists,and submits a new category
-racts.controller('landingpageController', ['$scope','$http', '$log', 'CategoryService', 'currentCategory',function($scope, $http, $log, CategoryService, currentCategory){
+racts.controller('landingpageController', ['$state','$scope','$http', '$log', 'CategoryService', 'currentCategory','session',function($state, $scope, $http, $log, CategoryService, currentCategory, session){
 
-	// function mainController(categories) {
-	// 	$scope.categories = categories
-	// 	$scope.currentCategory = function(index) {
-	// 		currentCategory.current_category = CategoryService.categories()[index]
-	// 	}
 
-	// 	$scope.newCategory = {}
-	// 	$scope.addCategory = function() {
-	// 		CategoryService.saveCategory($scope.newCategory)
-	// 		$scope.newCategory = {}
-	// 	}
-	// }
+	$scope.logOut = function(){
+		session.setCurrentUser(null)
+		$state.go('auth')
+	}
+
+
 }])
 
 

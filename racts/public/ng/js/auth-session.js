@@ -29,28 +29,28 @@ racts.service('authService', ['$http', '$q', function($http, $q){
 
 }])
 
-racts.controller('authController', ['$scope','currentUser', 'authService','localStorageCheck', 'session', function($scope, currentUser, authService, localStorageCheck, session){
+racts.controller('authController', ['$state','$scope','currentUser', 'authService','localStorageCheck', 'session', function($state, $scope, currentUser, authService, localStorageCheck, session){
 
+	// if ( session.currentUser() ){
+	// 	$state.go('landingpage.active')
+	// } 
+	// else{
 
-	console.log(session.currentUser)
-	console.log(currentUser)
-	setInterval(function(){console.log(currentUser,session.currentUser )},1000)
+		$scope.credentials = authService.credentials
+		$scope.submit = function(){
+			authService.submit().then( successfullAuth, errorAuth )
+		}
 
+		function successfullAuth(user){
+			console.log('weeeee!!')
+			session.setCurrentUser(user)
+			$state.go('landingpage.active')
 
-	$scope.credentials = authService.credentials
-	$scope.submit = function(){
-		authService.submit().then( successfullAuth, errorAuth )
-	}
-
-	function successfullAuth(user){
-		console.log('weeeee!!')
-		session.setCurrentUser(user)
-
-	}
-	function errorAuth(){
-		console.log('Authentication failed!')
-	}
-
+		}
+		function errorAuth(){
+			console.log('Authentication failed!')
+		}
+	// }
 
 }])
 
@@ -72,9 +72,10 @@ racts.service('session', ['$q', 'currentUser', function($q, currentUser){
 		console.log('im working in localstorage right now')
 		var deferLocalCheck = $q.defer()
 		user = getLocal()
+		var trigger = false
 		if (user){
 			setCurrentUser(user)
-			var trigger = true
+			trigger = true
 		}
 		deferLocalCheck.resolve(trigger)
 		return deferLocalCheck.promise
@@ -86,15 +87,14 @@ racts.service('session', ['$q', 'currentUser', function($q, currentUser){
 		window.localStorage['currentUser'] = JSON.stringify(currentUser)
 	}
 	function setCurrentUser(user){
-		console.log('inside setCurrentUser')
-		console.log(user)
 		currentUser = user
 		setLocal(user)
 	}
+
 	this.setCurrentUser = setCurrentUser
 
 
-	this.currentUser = currentUser
+	this.currentUser = function(){return currentUser}
 
 
 	
@@ -104,6 +104,7 @@ racts.service('session', ['$q', 'currentUser', function($q, currentUser){
 
 racts.factory('currentUser', [function(){
 
+	this.test = 'foo'
 	var currentUser = null
 
 	return currentUser
