@@ -38,7 +38,6 @@ racts.controller('authController', ['$state','$scope','currentUser', 'authServic
 		}
 
 		function successfullAuth(user){
-			console.log('weeeee!!')
 			session.setCurrentUser(user)
 			$state.go('landingpage.active')
 
@@ -68,7 +67,6 @@ racts.service('session', ['$q', 'currentUser', function($q, currentUser){
 	this.getLocal = getLocal
 	//end
 	this.localStorageCheck = function(){
-		console.log('*****LocalStorageCheck speaking*****')
 		var deferLocalCheck = $q.defer()
 		user = getLocal()
 		var trigger = false
@@ -94,9 +92,8 @@ racts.service('session', ['$q', 'currentUser', function($q, currentUser){
 
 
 	this.currentUser = function(){
-		console.log('yes i am!')
-		console.log(currentUser)
-		return currentUser}
+		return currentUser
+	}
 
 
 
