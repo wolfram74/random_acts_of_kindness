@@ -32,7 +32,7 @@ RSpec.describe CategoriesController, type: :controller do
     period = 1
     # route = "/users/%d/categories/%d" % [user.id, category_id]
     args = { user_id:user.id, id:category.id ,amount: amount, period: period}
-    post :new_subscription, args
+    post "subscribe", args
     expect(JSON.parse(response.body)["status"]).to eq("success")
 
   end
