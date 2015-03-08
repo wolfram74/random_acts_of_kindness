@@ -80,6 +80,7 @@ racts.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
 				availableResolver: 'availableResolver'
 			}
 		})
+
 }]);
 
 

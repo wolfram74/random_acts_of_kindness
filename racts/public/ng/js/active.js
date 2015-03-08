@@ -52,20 +52,20 @@ racts.service('activeTasksService', ['$http', '$q', 'activeTasksModel', function
 racts.controller('activeTasksController', ['$http', '$scope', 'activeTasksService', function($http, $scope, activeTasksService){
 
 	$scope.assignments = activeTasksService.activeTasksModel.assignments
-
 	console.log($scope.assignments)
-	// console.log( #{task.assignemnt_id})
 	$scope.completeTask =  function(task, index) {
 			if(confirm("Are you sure?")) {
 				 console.log("hello")
+				 console.log(index)
+				 console.log($scope.assignments[index].description)
 				 console.log("http://localhost:3000/assignments/" + task.assignment_id)
 				$http.put("http://localhost:3000/assignments/" + task.assignment_id)
 				.success(function(response) {
-					console.log(response)
-					// $scope.assignments.splice(index,1);
+					console.log("DONE!")
 		    })
-				// .error(function(response) {
-				//   console.log("Rejected")
+		    .error(function(response) {
+		    	console.log("Rejected!")
+		    })
 			}
 	}
 }])

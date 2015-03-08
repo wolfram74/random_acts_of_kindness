@@ -1,3 +1,4 @@
 <div class="item item-text-wrap">
- {{task.description}} &nbsp &nbsp &nbsp <button ng-click="completeTask(task, $index)">Complete</button>
+ <span ng-style= "myStyle">{{task.description}}</span> &nbsp &nbsp &nbsp
+ <button ng-click="completeTask(task, $index) ; myStyle={'text-decoration': 'line-through'}">Complete</button>
 </div>
