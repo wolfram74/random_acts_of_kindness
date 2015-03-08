@@ -14,7 +14,9 @@ RSpec.describe UsersController, type: :controller do
   it "#create" do
       test = FactoryGirl.build(:user)
       params = {credentials:{email: test.email, password: "farts", password_confirm: "farts"}}
-      post "create", params
+      expect{
+       post "create", params
+      }.to change{User.count}
       expect(JSON.parse(response.body)["user"]).to_not eq(nil)
   end
 end

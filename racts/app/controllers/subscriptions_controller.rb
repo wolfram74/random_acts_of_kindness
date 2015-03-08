@@ -14,4 +14,9 @@ class SubscriptionsController < ApplicationController
     object = @tasks 
     render json: object
   end
+
+  def destroy
+    Subscription.delete(params[:id])
+    render json: {success: true}
+  end
 end
