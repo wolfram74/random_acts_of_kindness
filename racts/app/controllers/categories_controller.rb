@@ -1,9 +1,10 @@
 class CategoriesController < ApplicationController
   def index #/categories
     @public_categories = Category.where(public: true)
-    user = User.find(params[:user_id])
-    if user
-      @public_categories -= user.subscribed_categories
+    p params
+    user = User.where(id: params[:user_id])
+    if user.any?
+      @public_categories -= user[0].subscribed_categories
     end
     render json:{list: @public_categories}
   end
@@ -12,16 +13,15 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
     @tasks = @category.tasks
-    render json: @tasks#{@category.id => @tasks}
+    render json: @tasks
   end
 
+  #/users/:user_id/categories/:id/subscribe
   def subscribe
-    p params
     args = {}
     args[:category_id] = params[:id]
     args[:amount] = params[:amount] || 1
     args[:period] = params[:period] || 4
-    p args
     User.find(params[:user_id]).subscribe(args)
     render json: {status: "success"}
   end

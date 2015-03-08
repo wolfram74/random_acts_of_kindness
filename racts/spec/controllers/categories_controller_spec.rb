@@ -9,7 +9,8 @@ RSpec.describe CategoriesController, type: :controller do
         expect(response.status).to eq 200
       end
       it "responds with a 200" do
-        get :index, {user_id: User.last.id}
+        test = FactoryGirl.create(:user)
+        get :index, {user_id: test.id}
         expect(response.status).to eq 200
       end
     end
