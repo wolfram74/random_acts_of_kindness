@@ -34,7 +34,7 @@ racts.service('subscriptionsService', ['$http', '$q', 'subscriptionsModel', func
 
 
 
-racts.controller('subscriptionsController', ['$http', '$scope', 'subscriptionsService', 'subscriptionsResolver', 'loadSubscriptionTasksService', function($http, $scope, subscriptionsService, subscriptionsResolver, loadSubscriptionTasksService){
+racts.controller('subscriptionsController', ['$http', '$scope', 'subscriptionsService', 'subscriptionsResolver', 'loadSubscriptionTasksService', 'session', function($http, $scope, subscriptionsService, subscriptionsResolver, loadSubscriptionTasksService, session){
 
 
 
@@ -48,8 +48,8 @@ racts.controller('subscriptionsController', ['$http', '$scope', 'subscriptionsSe
   $scope.unsubscribe = function(subscription,index) {
   	console.log(subscription);
   	console.log(index);
-  	console.log('/users/' + subscription.user_id + '/subscriptions/' + subscription.subscription_id)
-  	$http.delete('/users/' + subscription.user_id + '/subscriptions/' + subscription.subscription_id)
+  	console.log('/users/' + session.currentUser().id + '/subscriptions/' + subscription.subscription_id)
+  	$http.delete('/users/' + session.currentUser().id + '/subscriptions/' + subscription.subscription_id)
   	.success(function(response) {
   		console.log(response)
   	})
