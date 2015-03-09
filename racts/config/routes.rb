@@ -9,12 +9,17 @@ Rails.application.routes.draw do
   get "/users/:id", to: 'users#show'
   get "/users/:user_id/subscriptions", to: 'subscriptions#index' , as: 'subscriptions'
   post "/users", to: 'users#create'
+  
   get "/users/:user_id/subscriptions/:id", to: 'subscriptions#show' 
   delete "/users/:user_id/subscriptions/:id", to: 'subscriptions#destroy'
+  
   get "/categories", to: 'categories#index'
   get "/categories/:id", to: 'categories#show' 
+  
   put '/assignments/:id/complete', to: 'assignments#complete' , as: 'complete_assignment'
   post '/users/:user_id/categories/:id/subscribe', to: 'categories#subscribe'  , as: 'new_subscription'
+
+  get '/tasks/random', to: 'tasks#random', as:'random_task'
 
   # resources :users do
   #   resources :subscriptions
