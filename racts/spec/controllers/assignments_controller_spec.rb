@@ -2,6 +2,14 @@ require 'rails_helper'
 
 RSpec.describe AssignmentsController, type: :controller do
 
+  context "#index" do
+    it "can hit the route" do
+      user = FactoryGirl.create(:user)
+      get "index", {user_id: user.id}
+      expect(response.status).to eq(200)
+    end
+  end
+
   context "#complete" do
     it "complete route works" do
       user = FactoryGirl.create(:user)
