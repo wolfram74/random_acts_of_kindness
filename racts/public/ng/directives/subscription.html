@@ -1,6 +1,5 @@
-<a ng-click="showTasks($index)">
-	<div class="item item-text-wrap">
-	  {{subscription.name}}
-	</div>
-</a>
-
+<div>
+  <div class="item item-text-wrap">
+    <a><span ng-click="showTasks($index)"> {{subscription.name}}</span></a> &nbsp &nbsp &nbsp<button ng-click="unsubscribe(subscription, $index)">Unsubscribe</button>
+  </div>
+</div>
