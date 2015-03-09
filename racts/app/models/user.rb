@@ -45,6 +45,7 @@ class User < ActiveRecord::Base
       category = category.to_json
       category = JSON.parse(category)
       category[:subscription_id] = subscription.id
+      p category
       category
     end
     return categories
