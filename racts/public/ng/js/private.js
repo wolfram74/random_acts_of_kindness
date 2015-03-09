@@ -1,5 +1,5 @@
 racts.factory('subscriptionsModel', [function() {
-	
+
 	var data = {
 		list: []
 	}
@@ -43,16 +43,27 @@ racts.controller('subscriptionsController', ['$http', '$scope', 'subscriptionsSe
   $scope.showTasks = function(index){
   	var subscription = subscriptionsService.subscriptionsModel.list[index]
   	loadSubscriptionTasksService.load(subscription.id)
-
   }
 
+  $scope.unsubscribe = function(subscription,index) {
+  	console.log(subscription);
+  	console.log(index);
+  	console.log('/users/' + subscription.user_id + '/subscriptions/' + subscription.id)
+  	$http.delete('/users/' + subscription.user_id + '/subscriptions/' + subscription.id)
+  	.success(function(response) {
+  		console.log(response)
+  	})
+  	.error(function(response) {
+  		console.log("ERROR!")
+  	})
+  }
 }])
 
 
 racts.service('loadSubscriptionTasksService', ['$state','$http', '$q', 'subscriptionsModel', 'currentUser', function($state, $http, $q, subscriptionsModel, currentUser ){
 
 
-		this.load = function(id){ 
+		this.load = function(id){
 
 			$http.get('http://localhost:3000/categories/'+id)
 				.success(function(response) {
@@ -66,13 +77,6 @@ racts.service('loadSubscriptionTasksService', ['$state','$http', '$q', 'subscrip
 				})
 		}
 
-
-
-
-
-
-
 }])
-
 
 
