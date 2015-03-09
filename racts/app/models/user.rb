@@ -40,6 +40,7 @@ class User < ActiveRecord::Base
 
   def assignments_to_tasks()
     assignments = self.assignments
+    assignments = assignments.select{|assignment| !assignment.completed_on.nil?}
     tasks = assignments.map do |assignment|
       task  = Task.find(assignment.task_id)
       task = task.to_json
