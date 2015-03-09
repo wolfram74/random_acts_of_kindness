@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   
   get "/users/:user_id/subscriptions/:id", to: 'subscriptions#show' 
   delete "/users/:user_id/subscriptions/:id", to: 'subscriptions#destroy'
+  get '/users/:user_id/assignments', to: 'assignments#index', as: "assignments"
   
   get "/categories", to: 'categories#index'
   get "/categories/:id", to: 'categories#show' 
