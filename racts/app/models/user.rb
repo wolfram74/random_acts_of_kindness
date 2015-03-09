@@ -45,6 +45,7 @@ class User < ActiveRecord::Base
       task = task.to_json
       new_format = JSON.parse(task)
       new_format[:assignment_id] = assignment.id
+      new_format[:completed_on] = assignment.completed_on
       new_format
     end
     return tasks
