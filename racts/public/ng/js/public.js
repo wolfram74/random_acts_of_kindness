@@ -32,8 +32,11 @@ racts.service('availableService', ['$http', '$q', 'availableModel', 'session', f
 
 
 	this.subscribe = function(category){
-	  $http.post('/users/' + session.currentUser().id + '/categories/' + category.id + '/subscribe')
+		var amount = Number(prompt("Enter the number of tasks you want to subscribe to")) || 1;
+	  var period = Number(prompt("Enter the period of subscription in years")) || 4;
+	  $http.post('/users/' + session.currentUser().id + '/categories/' + category.id + '/subscribe?amount=' + amount + '&period=' + period)
 	  	.success(function(response) {
+	  		alert("You have been subscribed to " + amount + " task(s) in " +  category.name + " category for a period of " + period + " year(s)")
 	  		console.log(response)
 	  	})
 	  	.error(function(response) {
