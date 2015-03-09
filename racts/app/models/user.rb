@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :tasks
   has_many :assignments
   has_many :votes
-
+  validates :email, presence: true, uniqueness: true
   # users.password_hash in the database is a :string
   include BCrypt
 
@@ -39,7 +39,15 @@ class User < ActiveRecord::Base
   end
 
   def subscribed_categories #fetch categories user has subscribed to
-    self.subscriptions.map {|subscription| Category.find(subscription.category_id)}
+    subscriptions = self.subscriptions#.map {|subscription| Category.find(subscription.category_id)}
+    categories = subscriptions.map do |subscription|
+      category = Category.find(subscription.category_id)
+      category = category.to_json
+      category = JSON.parse(category)
+      category[:subscription_id] = subscription.id
+      category
+    end
+    return categories
   end
 
   def update_subscriptions
