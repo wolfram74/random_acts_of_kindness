@@ -52,6 +52,7 @@ racts.controller('subscriptionsController', ['$http', '$scope', 'subscriptionsSe
   	$http.delete('/users/' + session.currentUser().id + '/subscriptions/' + subscription.subscription_id)
   	.success(function(response) {
   		console.log(response)
+      alert("You have been unsubscribed from " + subscription.name + " category")
   	})
   	.error(function(response) {
   		console.log("ERROR!")
