@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
     @public_categories = Category.where(public: true)
     user = User.where(id: params[:user_id])
     if user.any?
-      @public_categories -= user[0].subscribed_categories
+      @public_categories -= user[0].subscribed_categories({json: false})
     end
     render json:{list: @public_categories}
   end

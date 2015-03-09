@@ -38,15 +38,20 @@ class User < ActiveRecord::Base
     return tasks
   end
 
-  def subscribed_categories #fetch categories user has subscribed to
+  def subscribed_categories(args) #fetch categories user has subscribed to
     subscriptions = self.subscriptions#.map {|subscription| Category.find(subscription.category_id)}
-    categories = subscriptions.map do |subscription|
-      category = Category.find(subscription.category_id)
-      category = category.to_json
-      category = JSON.parse(category)
-      category[:subscription_id] = subscription.id
-      p category
-      category
+    json = args.fetch(:json, true)
+    if !json
+      return subscriptions.map {|subscription| Category.find(subscription.category_id)}
+    else
+      categories = subscriptions.map do |subscription|
+        category = Category.find(subscription.category_id)
+        category = category.to_json
+        category = JSON.parse(category)
+        category[:subscription_id] = subscription.id
+        p category
+        category
+      end
     end
     return categories
   end

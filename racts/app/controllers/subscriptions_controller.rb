@@ -1,6 +1,6 @@
 class SubscriptionsController < ApplicationController
   def index
-    @subscriptions = User.find(params[:user_id]).subscribed_categories
+    @subscriptions = User.find(params[:user_id]).subscribed_categories({json: true})
     # @categories = @subscriptions.map{|subscription| Category.find(subscription.category_id)}
     # object = {}
     # object[:list] = @categories
