@@ -50,12 +50,9 @@ racts.service('registerService', ['$http','$q',function($http, $q){
     }
 
    	console.log('yup im here alright still here bitch')
-
-
-
 }])
 
-racts.controller('authController', ['$state','$scope','currentUser', 'authService','localStorageCheck', 'session', 'registerService', function($state, $scope, currentUser, authService, localStorageCheck, session, registerService){
+racts.controller('authController', ['$state','$http', '$scope','currentUser', 'authService','localStorageCheck', 'session', 'registerService', function($state, $http, $scope, currentUser, authService, localStorageCheck, session, registerService){
 		$scope.registrationDetails = registerService.userDetails
 		console.log($scope.registrationDetails)
 
@@ -82,7 +79,6 @@ racts.controller('authController', ['$state','$scope','currentUser', 'authServic
 		function errorAuth(){
 			console.log('Authentication failed!')
 		}
-	// }
 
 }])
 
