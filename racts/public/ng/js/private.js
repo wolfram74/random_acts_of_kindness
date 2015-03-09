@@ -48,8 +48,8 @@ racts.controller('subscriptionsController', ['$http', '$scope', 'subscriptionsSe
   $scope.unsubscribe = function(subscription,index) {
   	console.log(subscription);
   	console.log(index);
-  	console.log('/users/' + subscription.user_id + '/subscriptions/' + subscription.id)
-  	$http.delete('/users/' + subscription.user_id + '/subscriptions/' + subscription.id)
+  	console.log('/users/' + subscription.user_id + '/subscriptions/' + subscription.subscription_id)
+  	$http.delete('/users/' + subscription.user_id + '/subscriptions/' + subscription.subscription_id)
   	.success(function(response) {
   		console.log(response)
   	})
