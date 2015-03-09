@@ -14,10 +14,6 @@ class UsersController < ApplicationController
   def create
     object = {success: false,user: nil}
     password_mismatch = params[:credentials][:password] != params[:credentials][:password_confirm]
-    puts "@@@"
-    puts params[:credentials][:password_confirm]
-    puts "&&&&"
-    puts params[:credentials][:password]
     if password_mismatch
       render json: object
     else
