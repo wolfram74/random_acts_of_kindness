@@ -1,34 +1,26 @@
 
 .container, #container{
-
 max-width: 600px;
 min-width: 200px;
 width: 75%;
-max-height: 1000px;
-min-height: 300px;
+max-height: 700px;
+min-height: 200px;
 height: 100%;
 border-radius: 10px;
- 
   background-color: rgb(97,113,69);
   background-color: rgba(97,113,69, 0.4);
-
-}
-
-#heightmoniter{
-  height: 400px;
   overflow: scroll;
 }
-
+.scrollbox{
+  height: 250px;
+  overflow: scroll;
+}
 body{
   background: url("background1.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-}
-
-#login_button{
-  background-color: rgb(51,48,10);
 }
 
 .navbar{

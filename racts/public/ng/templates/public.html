@@ -2,16 +2,23 @@
 
 <div class="container" id="container">
   <ion-header-bar class="bar-energized">
-  <h1 class="title">Available Categories</h1>
+    <h1 class="title">Available Categories</h1>
   </ion-header-bar>
+
+
   <ion-content>
-  <div class="card">
-    <div class="item item-divider">
-      Available Categories
-    </div>
-    <available ng-repeat="available in available"></available>
+    <div class="card">
+      <div class="item item-divider">
+        Available Categories
+      </div>
+      <div class="scrollbox">
+
+        <available ng-repeat="available in available">
+       </available>
+      </div>
     </div>
   </ion-content>
+</div>
 
 
 
