@@ -5,14 +5,15 @@ RSpec.describe VotesController, type: :controller do
     it "can hit the route" do
       user = FactoryGirl.create(:user)
       task = FactoryGirl.create(:task)
-      get "cast_vote", {user_id: user.id, class_name: task.class.to_s, id: task.id}
+      post "cast_vote", {user_id: user.id, class_name: task.class.to_s, id: task.id, change: -1}
       expect(response.status).to eq(200)
     end
     it "can hit the route" do
       user = FactoryGirl.create(:user)
       task = FactoryGirl.create(:task)
-      get "cast_vote", {user_id: user.id, class_name: task.class.to_s, id: task.id}
-      expect(response.status).to eq(200)
+      expect{
+        post "cast_vote", {user_id: user.id, class_name: task.class.to_s, id: task.id, change: -1}
+        }.to change{Task.last.score}
     end
   end
 end
