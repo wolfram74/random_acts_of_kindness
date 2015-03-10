@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   post '/users/:user_id/:class_name/:id/vote', to: 'votes#cast_vote', as: "cast_vote" #expects integer param "change"
 
   get '/tasks/random', to: 'tasks#random', as:'random_task'
-
+  post '/tasks', to: 'tasks#create' #expects params {name: , description:, cost_estimate: }
   # resources :users do
   #   resources :subscriptions
   # end
