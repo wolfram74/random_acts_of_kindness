@@ -8,7 +8,7 @@
       <h2 class="form-signin-heading"></h2>
       <input type="text" class="form-control" ng-model='credentials().email' placeholder="Email" required="" autofocus="" />
       <input type="password" class="form-control" ng-model='credentials().password' placeholder="Password" required=""/>
-      <button class="btn btn-lg btn-primary btn-block" ng-click='submit()'>Login</button>
+      <button class="btn btn-lg btn-primary btn-block" ng-click='submit()' id="hvr-buzz">Login</button>
       <br>
 
     </form>
@@ -23,14 +23,14 @@
         <input ng-model='registrationDetails().username' class="form-control" type="username" name="username" placeholder="Username">
         <input ng-model='registrationDetails().password' class="form-control" type="password" name="password" placeholder="Password">
         <input ng-model='registrationDetails().password_confirm' class="form-control" type="password" name="password_confirm" placeholder="Confirm Password">
-        <a  ui-sref='register'><button class="btn btn-lg btn-primary btn-block" ng-click='submitRegister()' type="button" class="btn btn-default">REGISTER</button></a>
+        <a  ui-sref='register'><button class="btn btn-lg btn-primary btn-block" ng-click='submitRegister()' type="button" class="btn btn-default" id="hvr-buzz">REGISTER</button></a>
     </form>
   </div>
 
   <br>
   <div class="btn-group btn-group-justified" id="wrapper" role="group" aria-label="...">
     <div class="btn-group" role="group">
-      <a ui-sref='randomact'><button type="button" class="btn btn-lg btn-primary btn-block">Commit a Random act of Kindness</button></a>
+      <a ui-sref='randomact'><button type="button" class="btn btn-lg btn-primary btn-block" id="hvr-buzz">Commit a Random act of Kindness</button></a>
     </div>
   </div>
   <br>
