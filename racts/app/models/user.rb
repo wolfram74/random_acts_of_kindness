@@ -38,6 +38,20 @@ class User < ActiveRecord::Base
     return tasks
   end
 
+  def assignments_to_tasks()
+    assignments = self.assignments
+    assignments = assignments.select{|assignment| !assignment.completed_on.nil?}
+    tasks = assignments.map do |assignment|
+      task  = Task.find(assignment.task_id)
+      task = task.to_json
+      new_format = JSON.parse(task)
+      new_format[:assignment_id] = assignment.id
+      new_format[:completed_on] = assignment.completed_on
+      new_format
+    end
+    return tasks
+  end
+
   def subscribed_categories(args) #fetch categories user has subscribed to
     subscriptions = self.subscriptions#.map {|subscription| Category.find(subscription.category_id)}
     json = args.fetch(:json, true)

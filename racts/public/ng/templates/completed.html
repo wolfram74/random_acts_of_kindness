@@ -1,0 +1,15 @@
+<div class="container" id="container">
+    <ion-header-bar class="bar-energized">
+      <h1 class="title">User Profile</h1>
+    </ion-header-bar>
+    <ion-content>
+    <div class="card">
+      <div class="item item-divider" id="private_lists">
+        Completed Tasks
+        <div>
+          <completed-task ng-repeat="(assignmentId, task) in assignments"></completed-task>
+       </div>
+      </div>
+  </div>
+</ion-content>
+

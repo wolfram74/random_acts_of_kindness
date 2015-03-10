@@ -1,5 +1,6 @@
 
 .container, #container{
+
 max-width: 600px;
 min-width: 200px;
 width: 75%;
@@ -10,6 +11,12 @@ border-radius: 10px;
  
   background-color: rgb(97,113,69);
   background-color: rgba(97,113,69, 0.4);
+
+}
+
+#heightmoniter{
+  height: 400px;
+  overflow: scroll;
 }
 
 body{
@@ -72,6 +79,11 @@ body{
   margin-left: auto;
 }
 
+.wrapper {
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+}
 /*=============================*/
 
 /*=========login===============*/
@@ -183,3 +195,4 @@ body{
   width: 80%;
 }
 /*=================================*/
+
