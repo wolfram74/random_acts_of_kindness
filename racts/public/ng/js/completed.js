@@ -28,8 +28,19 @@ racts.service('completedTasksResolver', ['$http', '$q', 'completedTasksModel', '
           console.log('error with fetching completed tasks')
         })
 
+
   console.log('********** CompletedTaskResolver initiated TEST END **********')
   return getCompletedTasks
+
+  // $scope.gottenTasks = $http.get('http://localhost:3000/users/'+session.currentUser().id+'/assignments')
+  //       .success(function(response) {
+  //         completedTasksModel.assignments = response
+  //         console.log('completedTasks after API call :')
+  //         console.log( completedTasksModel.assignments )
+  //       })
+  //       .error(function(response){
+  //         console.log('error with fetching completed tasks')
+  //       })
 
 }])
 
