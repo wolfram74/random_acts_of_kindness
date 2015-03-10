@@ -10,7 +10,7 @@ class TasksController < ApplicationController
       name: params[:name], 
       description: params[:description], 
       cost_estimate: params[:cost_estimate], 
-      publigic: false})
+      public: false})
     render json: {}
   end
 end
