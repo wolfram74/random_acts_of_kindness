@@ -1,3 +1,9 @@
 <div class="item item-text-wrap">
  <span>{{task.description}}</span> &nbsp &nbsp &nbsp
+
+ <button ng-click="likeTask(task,$index) ; lbutton=true ; lcount=1 ; ucount=0" ng-disabled="lbutton">Like | {{lcount}}</button>&nbsp &nbsp &nbsp
+
+ <button ng-click="unlikeTask(task,$index) ; ubutton=true;  lcount=0 ; ucount=1"  ng-disabled="ubutton">Unlike | {{ucount}}</button>
+
+ <input type="text">Past Vote | {{ucount}}
 </div>
