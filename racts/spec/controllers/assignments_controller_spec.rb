@@ -22,7 +22,7 @@ RSpec.describe AssignmentsController, type: :controller do
       put 'complete', id: assignment.id
       actives = user.active_tasks
       get 'index', {user_id: user.id}
-      expect(response.body.length).to be > actives.length
+      expect(JSON.parse(response.body).length).to eq(1)
     end
   end
 

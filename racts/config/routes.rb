@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   
   put '/assignments/:id/complete', to: 'assignments#complete' , as: 'complete_assignment'
   post '/users/:user_id/categories/:id/subscribe', to: 'categories#subscribe'  , as: 'new_subscription'
+  post '/users/:user_id/:class_name/:id/vote', to: 'votes#cast_vote', as: "cast_vote" #expects integer param "change" 
 
   get '/tasks/random', to: 'tasks#random', as:'random_task'
 
