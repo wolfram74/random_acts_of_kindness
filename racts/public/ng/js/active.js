@@ -15,7 +15,7 @@ racts.service('activeTasksResolver', ['$http', '$q', 'activeTasksModel', 'sessio
 	console.log( session.currentUser() )
 
 	console.log('activeTask before resolving:')
-	console.log( activeTasksModel.assignments ) 
+	console.log( activeTasksModel.assignments )
 
 
 	var getActiveTasks = $http.get('http://localhost:3000/users/'+session.currentUser().id+'/active')
@@ -46,7 +46,7 @@ racts.service('activeTasksService', ['$http', '$q', 'activeTasksModel', function
 		    	console.log("Rejected!")
 		    })
 			}
-		
+
 }])
 
 

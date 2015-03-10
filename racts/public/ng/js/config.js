@@ -54,6 +54,15 @@ racts.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
 			}
 		})
 
+		.state('landingpage.completed', {
+			url: '/completed-tasks',
+			templateUrl: 'ng/templates/completed.html',
+			controller: 'completedTasksController',
+			resolve: {
+				completedTasksResolver: 'completedTasksResolver',
+			}
+		})
+
 		.state('landingpage.private', {
 			url: '/private',
 			templateUrl: 'ng/templates/private.html',
@@ -94,6 +103,16 @@ racts.directive('activeTask', function(){
 	return {
 		restrict: 'AE',
 		templateUrl: 'ng/directives/activetask.html',
+		replace: true
+	}
+
+})
+
+racts.directive('completedTask', function(){
+
+	return {
+		restrict: 'AE',
+		templateUrl: 'ng/directives/completedtask.html',
 		replace: true
 	}
 
