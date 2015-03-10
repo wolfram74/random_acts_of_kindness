@@ -63,6 +63,7 @@ racts.controller('availableController', ['$http', '$scope', 'availableService', 
 
   $scope.subscribe = function(category, index) {
   	availableService.subscribe(category)
+  	location.reload()
   }
 }])
 

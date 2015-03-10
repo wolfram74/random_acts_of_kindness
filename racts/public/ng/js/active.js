@@ -57,6 +57,7 @@ racts.controller('activeTasksController', ['$http', '$scope', 'activeTasksServic
 	$scope.completeTask =  function(task, index) {
 			if(confirm("Are you sure?")) {
 				 activeTasksService.complete(task)
+				 location.reload()
 		}
 	}
 }])
