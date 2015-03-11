@@ -82,7 +82,10 @@ racts.controller('completedTasksController', ['$http', '$scope', 'completedTasks
 
          completedTasksService.unlike(task)
 
-
   }
+
+   $scope.lvisible = false;
+   $scope.uvisible = false;
+
 }])
 

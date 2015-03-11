@@ -103,12 +103,11 @@ racts.controller('availableController', ['$http', '$scope', 'availableService', 
 
   $scope.unlikeTask =  function(category, index) {
 
-
-
          availableService.unlike(category)
-
-
   }
+
+  $scope.lvisible = false;
+  $scope.uvisible = false;
 
 }])
 
