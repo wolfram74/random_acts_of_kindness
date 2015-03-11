@@ -9,17 +9,17 @@ Rails.application.routes.draw do
   get "/users/:id", to: 'users#show'
   get "/users/:user_id/subscriptions", to: 'subscriptions#index' , as: 'subscriptions'
   post "/users", to: 'users#create'
-  
-  get "/users/:user_id/subscriptions/:id", to: 'subscriptions#show' 
+
+  get "/users/:user_id/subscriptions/:id", to: 'subscriptions#show'
   delete "/users/:user_id/subscriptions/:id", to: 'subscriptions#destroy'
   get '/users/:user_id/assignments', to: 'assignments#index', as: "assignments"
-  
+
   get "/categories", to: 'categories#index'
-  get "/categories/:id", to: 'categories#show' 
-  
+  get "/categories/:id", to: 'categories#show'
+
   put '/assignments/:id/complete', to: 'assignments#complete' , as: 'complete_assignment'
   post '/users/:user_id/categories/:id/subscribe', to: 'categories#subscribe'  , as: 'new_subscription'
-  post '/users/:user_id/:class_name/:id/vote', to: 'votes#cast_vote', as: "cast_vote" #expects integer param "change" 
+  post '/users/:user_id/:class_name/:id/vote', to: 'votes#cast_vote', as: "cast_vote" #expects integer param "change"
 
   get '/tasks/random', to: 'tasks#random', as:'random_task'
   post '/tasks', to: 'tasks#create' #expects params {name: , description:, cost_estimate: }

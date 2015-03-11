@@ -1,3 +1,11 @@
 <div class="item item-text-wrap">
  <span>{{task.description}}</span> &nbsp &nbsp &nbsp
+
+
+ <button ng-click="likeTask(task,$index) ; lcount=1 ; ucount=0 ; lvisible=true; uvisible=false;" ng-disabled="lvisible">Like | <span ng-if="task.past_vote">{{lcount=1}}</span><span ng-if="task.past_vote == 0">{{lcount=0}}</span></button>&nbsp &nbsp &nbsp
+
+ <button ng-click="unlikeTask(task,$index) ;  lcount=0 ; ucount=1 ; uvisible=true; lvisible=false" ng-disabled="uvisible">Unlike | <span ng-if="task.past_vote ==-1">{{ucount=1}}</span><span ng-if="task.past_vote == 0">{{ucount=0}}</span></button>
+
+ <span type="text">Past Vote | {{task.past_vote}}</span>
 </div>
+

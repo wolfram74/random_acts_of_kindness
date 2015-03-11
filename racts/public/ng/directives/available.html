@@ -1,7 +1,9 @@
 <div>
 	<div class="item item-text-wrap">
     <a><span ng-click="showTasks($index)"> {{available.name}}</span></a> &nbsp &nbsp &nbsp
-    <button ng-click="subscribe(available, $index)">Subscribe</button>
+    <button ng-click="subscribe(available, $index)">Subscribe</button>&nbsp &nbsp &nbsp<button ng-click="likeTask(available,$index) ; lcount=1 ; ucount=0 ; lvisible=true; uvisible=false;" ng-disabled="lvisible">Like | {{lcount}}</button>&nbsp &nbsp &nbsp
+
+    <button ng-click="unlikeTask(available,$index); ucount=1; lcount=0; uvisible=true; lvisible=false" ng-disabled="uvisible">Unlike | {{ucount}}</button>&nbsp &nbsp &nbsp
 	</div>
 </div>
 
