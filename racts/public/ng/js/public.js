@@ -44,34 +44,6 @@ racts.service('availableService', ['$http', '$q', 'availableModel', 'session', '
 	  	})
 	}
 
-
-    this.like = function(category){
-      console.log("http://localhost:3000/users/" + session.currentUser().id + "/Task/" + category.id + '/vote?change=1')
-
-      $http.post("http://localhost:3000/users/" + session.currentUser().id + "/Task/" + category.id + '/vote?change=1')
-        .success(function(response) {
-          console.log(response)
-          console.log("DONE!")
-        })
-        .error(function(response) {
-          console.log("Rejected!")
-        })
-      }
-
-
-    this.unlike = function(category){
-     console.log("http://localhost:3000/users/" + session.currentUser().id + "/Task/" + category.id + '/vote?change=-1')
-      $http.post("http://localhost:3000/users/" + session.currentUser().id + "/Task/" + category.id + '/vote?change=-1')
-        .success(function(response) {
-          console.log(response)
-          console.log("DONE!")
-        })
-        .error(function(response) {
-          console.log("Rejected!")
-        })
-      }
-
-
 }])
 
 
@@ -90,23 +62,6 @@ racts.controller('availableController', ['$http', '$scope', 'availableService', 
   $scope.subscribe = function(category, index) {
   	availableService.subscribe(category)
   }
-
-  $scope.ucount=0;
-  $scope.lcount=0;
-  $scope.likeTask =  function(category, index) {
-
-
-         availableService.like(category)
-
-  }
-
-  $scope.unlikeTask =  function(category, index) {
-
-         availableService.unlike(category)
-  }
-
-  $scope.lvisible = false;
-  $scope.uvisible = false;
 
 }])
 

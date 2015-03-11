@@ -138,3 +138,18 @@ body{
   width: 80%;
 }
 /*=================================*/
+
+.lStyle {
+    background-color: green;
+    color: white;
+  }
+
+  .nStyle {
+    background-color: none;
+  }
+
+  .uStyle {
+    background-color: red;
+    color: white;
+  }
+
