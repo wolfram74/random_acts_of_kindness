@@ -53,8 +53,8 @@ racts.service('completedTasksService', ['$http', '$q', 'completedTasksModel','se
 
 
     this.unlike = function(task){
-      console.log("http://localhost:3000/users/" + session.currentUser().id + "/Task/" + task.assignment_id + '/vote?change=-1');
-      $http.post("http://localhost:3000/users/" + session.currentUser().id + "/Task/" + task.assignment_id + '/vote?change=-1')
+      console.log("http://localhost:3000/users/" + session.currentUser().id + "/Task/" + task.id + '/vote?change=-1');
+      $http.post("http://localhost:3000/users/" + session.currentUser().id + "/Task/" + task.id + '/vote?change=-1')
         .success(function(response) {
           console.log(response)
           console.log("DONE!")
