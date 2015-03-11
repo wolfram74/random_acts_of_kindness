@@ -40,8 +40,8 @@ racts.service('completedTasksService', ['$http', '$q', 'completedTasksModel','se
     this.completedTasksModel = completedTasksModel
 
     this.like = function(task){
-      console.log("http://localhost:3000/users/" + session.currentUser().id + "/Task/" + task.assignment_id + '/vote?change=1')
-      $http.post("http://localhost:3000/users/" + session.currentUser().id + "/Task/" + task.assignment_id + '/vote?change=1')
+      console.log("http://localhost:3000/users/" + session.currentUser().id + "/Task/" + task.id + '/vote?change=1')
+      $http.post("http://localhost:3000/users/" + session.currentUser().id + "/Task/" + task.id + '/vote?change=1')
         .success(function(response) {
           console.log(response)
           console.log("DONE!")
@@ -73,6 +73,14 @@ racts.controller('completedTasksController', ['$http', '$scope', 'completedTasks
 
   $scope.ucount=0;
   $scope.lcount=0;
+
+  $scope.lStyle= {
+        "background-color":"green"
+    }
+  $scope.uStyle= {
+        "background-color":"red"
+    }
+
   $scope.likeTask =  function(task, index) {
 
          completedTasksService.like(task)
