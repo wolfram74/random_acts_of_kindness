@@ -34,8 +34,8 @@ racts.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
 		.state('randomact', {
 			views: {
 				'@': {
-					url: '/random',
-					templateUrl: 'ng/templates/random.html',
+					url: '/',
+					templateUrl: 'ng/templates/auth.html',
 					controller: 'randomController'
 				}
 			},

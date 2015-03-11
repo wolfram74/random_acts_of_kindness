@@ -41,6 +41,7 @@ racts.service('registerService', ['$http','$q',function($http, $q){
       .success(function(response) {
          var currentUser = { email: userDetails.email, id: response.user}
          q.resolve(currentUser)
+       
       })
       .error(function(response) {
         console.log("Error!")

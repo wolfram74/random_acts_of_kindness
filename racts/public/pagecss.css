@@ -1,5 +1,13 @@
 /*=======homepage========*/
+#a_random_act{
+  padding: 2px;
+  font-size: 28px;
+  color: white;
+  font-weight: bolder;
+   -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: black;
 
+}
 .container, #container{ 
 max-width: 600px;
 min-width: 200px;
@@ -10,7 +18,7 @@ min-height: 200px;
 height: 100%;
 border-radius: 10px;
   background-color: rgb(175,175,175);
-  background-color: rgba(175,175,175, 0.45);
+  background-color: rgba(175,175,175, 0.8);
   overflow: scroll;
 }
 .scrollbox{
@@ -63,13 +71,13 @@ body{
 /*=============================*/
 
 /*=========login===============*/
-form {
+form > input {
   . . .
   visibility:hidden;
   opacity:0;
   transition:visibility 0s linear 0.5s,opacity 0.5s linear;
 }
-form:hover {
+form:hover > input{
   visibility:visible;
   opacity:1;
   transition-delay:0.1s;
@@ -130,13 +138,11 @@ form:hover {
   margin-right: auto;
   margin-left: auto;
   border-radius: 10px;
+  text-shadow: 1px 1px darkgreen;
 }
 #activetasks{
   text-shadow: 1px 1px black;
   font-size: 20px;
-}
-.title{
-  text-shadow: 1px 1px darkgreen;
 }
 #private_lists{
   text-align: center;
