@@ -1,6 +1,11 @@
 
 
 <div class="container">
+  <style type="text/css">
+    .container{
+      background: transparent;
+    }
+  </style>
   <br><br>
   <div class="wrapper">
     <form class="form-signin">
@@ -26,12 +31,23 @@
         <a  ui-sref='register'><button class="btn btn-lg btn-primary btn-block" ng-click='submitRegister()' type="button" class="btn btn-default" id="hvr-buzz">REGISTER</button></a>
     </form>
   </div>
+</div>
 
   <br>
-  <div class="btn-group btn-group-justified" id="wrapper" role="group" aria-label="...">
-    <div class="btn-group" role="group">
-      <a ui-sref='randomact'><button type="button" class="btn btn-lg btn-primary btn-block" id="hvr-buzz">Commit a Random act of Kindness</button></a>
-    </div>
+<div id="wrapper" aria-label="...">
+  <div role="group">
+    <a ui-sref='randomact'><button type="button" class="fancytext" id="hvr-buzz">
+
+<style type="text/css"> .fancytext{
+  color: white;
+  -webkit-text-stroke-width: 0.8px;
+  -webkit-text-stroke-color: black;
+}</style>
+
+  "Commit Random Act of Kindness Today"
+
+</button></a>
   </div>
-  <br>
 </div>
+<br>
+

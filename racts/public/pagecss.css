@@ -1,15 +1,16 @@
 /*=======homepage========*/
 
-.container, #container{
+.container, #container{ 
 max-width: 600px;
 min-width: 200px;
 width: 75%;
+margin-top: 25px;
 max-height: 700px;
 min-height: 200px;
 height: 100%;
 border-radius: 10px;
-  background-color: rgb(97,113,69);
-  background-color: rgba(97,113,69, 0.4);
+  background-color: rgb(175,175,175);
+  background-color: rgba(175,175,175, 0.45);
   overflow: scroll;
 }
 .scrollbox{
@@ -62,6 +63,22 @@ body{
 /*=============================*/
 
 /*=========login===============*/
+form {
+  . . .
+  visibility:hidden;
+  opacity:0;
+  transition:visibility 0s linear 0.5s,opacity 0.5s linear;
+}
+form:hover {
+  visibility:visible;
+  opacity:1;
+  transition-delay:0s;
+}
+
+
+
+
+
 
 .wrapper{
   width: 50%;
@@ -179,7 +196,15 @@ body{
 
 
 /*=========web kit and other===========*/
-
+.fancytext{
+  background: transparent;
+  border: none;
+  font-size: 60px;
+  font-style: italic;
+   -webkit-text-stroke-width: 0.4px;
+   -webkit-text-stroke-color: white; 
+  font-color: white;
+}
 
 
 
@@ -243,6 +268,7 @@ a:active.darkcolor {
 }
 
 #hvr-buzz {
+  position: relative;
   display: inline-block;
   vertical-align: middle;
   -webkit-transform: translateZ(0);
