@@ -1,5 +1,7 @@
 <div class="item item-text-wrap">
  <span>{{task.description}}</span> &nbsp &nbsp &nbsp
+ <span>{{task.past_vote ? lcount=1 : lcount=0}}</span>
+ <span>{{task.past_vote==-1 ? ucount=1 : ucount=0}}</span>
 
  <button ng-click="likeTask(task,$index) ; lcount=1 ; ucount=0 ; lvisible=true; uvisible=false;" ng-disabled="lvisible">Like | {{lcount}}</button>&nbsp &nbsp &nbsp
 
@@ -8,3 +10,4 @@
  <span type="text">Past Vote | {{task.past_vote}}</span>
 </div>
 
+<span>{{isAdded ? 'Added' : 'Add to cart'}}
