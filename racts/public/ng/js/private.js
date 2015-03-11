@@ -34,7 +34,7 @@ racts.service('subscriptionsService', ['$http', '$q', 'subscriptionsModel', func
 
 
 
-racts.controller('subscriptionsController', ['$http', '$scope', 'subscriptionsService', 'subscriptionsResolver', 'loadSubscriptionTasksService', 'session', function($http, $scope, subscriptionsService, subscriptionsResolver, loadSubscriptionTasksService, session){
+racts.controller('subscriptionsController', ['$http', '$scope', 'subscriptionsService', 'subscriptionsResolver', 'loadSubscriptionTasksService', 'session', 'antiRefreshService', function($http, $scope, subscriptionsService, subscriptionsResolver, loadSubscriptionTasksService, session, antiRefreshService){
 
 
 
@@ -52,7 +52,7 @@ racts.controller('subscriptionsController', ['$http', '$scope', 'subscriptionsSe
   	$http.delete('/users/' + session.currentUser().id + '/subscriptions/' + subscription.subscription_id)
   	.success(function(response) {
   		console.log(response)
-      alert("You have been unsubscribed from " + subscription.name + " category")
+  		antiRefreshService.reloadSubscriptions(true)
   	})
   	.error(function(response) {
   		console.log("ERROR!")
