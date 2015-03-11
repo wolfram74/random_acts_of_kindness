@@ -1,30 +1,16 @@
 
+
 <div class="item item-text-wrap">
  <span>{{task.description}}</span> &nbsp &nbsp &nbsp
 
+<button ng-click="likeTask(task,$index) ; lcount=1 ; ucount=0" ng-class="task.past_vote === 1 ? 'lStyle' : 'nStyle'">Like | {{lcount}}</button>&nbsp &nbsp &nbsp
 
- <span>
-
-    <button ng-click="likeTask(task,$index) ; lcount=1 ; ucount=0  ; lStyle={'background-color': 'green'} ; uStyle = {'background-color': 'none'}" ng-if="task.past_vote == 1" ng-style= "lStyle uStyle" >Like | h1{{lcount=1}}</button>
-
-    <button ng-click="likeTask(task,$index) ; lcount=1 ; ucount=0  ; lStyle={'background-color': 'green'} ; uStyle = {'background-color': 'none'}" ng-if="task.past_vote == 0" ng-style="">Like | h2{{lcount=0}}</button>
-
-    <button ng-click="likeTask(task,$index) ; lcount=1 ; ucount=0  ; lStyle={'background-color': 'green'} ; uStyle = {'background-color': 'none'}" ng-if="task.past_vote == -1">Like | h3{{lcount=0}}</button>
-
-  </span>&nbsp &nbsp &nbsp
-
-  <span>
-
-    <button ng-if="task.past_vote ==-1" ng-click="unlikeTask(task,$index) ;  lcount=0 ; ucount=1; uStyle={'background-color': 'red'} ; lStyle = {'background-color': 'none'} " ng-style="uStyle">Unlike | h4{{ucount=1}}</button>
-
-    <button ng-if="task.past_vote == 0" ng-click="unlikeTask(task,$index) ;  lcount=0 ; ucount=1; uStyle={'background-color': 'red'} ; lStyle = {'background-color': 'none'} ">Unlike | h5{{ucount=0}}</button>
-
-    <button ng-if="task.past_vote == 1" ng-click="unlikeTask(task,$index) ;  lcount=0 ; ucount=1; uStyle={'background-color': 'red'} ; lStyle = {'background-color': 'none'} ">Unlike | h6{{ucount=0}}</button>
-
-  </span>
+<button ng-click="unlikeTask(task,$index) ; ucount=1 ; lcount=0" ng-class="task.past_vote === -1 ? 'uStyle' : 'nStyle'">Unlike | {{ucount}}</button>&nbsp &nbsp &nbsp
 
  <span type="text">Past Vote | {{task.past_vote}}</span>
 </div>
+
+
 
 
 
