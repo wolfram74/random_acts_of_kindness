@@ -22,8 +22,8 @@ class Subscription < ActiveRecord::Base
     available_listings = self.category.listings
     sampled_listings = available_listings.sample(self.amount)
     sampled_listings.each do |listing|
-      args = {user_id: self.user_id, listing_id: listing.id}
-      Task.find(listing.task_id).assign(args)
+      listing.task.assign(user_id: self.user_id, 
+                          listing_id: listing.id)
     end
   end
 end
