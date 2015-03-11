@@ -70,6 +70,7 @@ racts.service('completedTasksService', ['$http', '$q', 'completedTasksModel','se
 racts.controller('completedTasksController', ['$http', '$scope', 'completedTasksService', function($http, $scope, completedTasksService){
 
   $scope.assignments = completedTasksService.completedTasksModel.assignments
+
   $scope.ucount=0;
   $scope.lcount=0;
   $scope.likeTask =  function(task, index) {
