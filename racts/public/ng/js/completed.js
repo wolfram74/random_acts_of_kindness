@@ -90,3 +90,29 @@ racts.controller('completedTasksController', ['$http', '$scope', 'completedTasks
 
 }])
 
+/////////////////////////
+//#expects params {name: , description:, cost_estimate: }
+
+racts.controller('newTaskController', ['$http','$q',function($http, $q){
+  console.log('I am a new task')
+  var newTaskDetails = { name: "", description: "", cost_estimate: ""}
+  $scope.newTaskDetails = function(){ return newTaskDetails }
+
+  $scope.submit = function() {
+    var q = $q.defer()
+    $http.post('http://localhost:3000/tasks', {details: newTaskDetails})
+      .success(function(response) {
+         var newTaskDetails = { name: newTaskDetails.name, description: newTaskDetails.description, cost_estimate: Number(newTaskDetails.cost_estimate)}
+         q.resolve(newTaskDetails)
+      })
+      .error(function(response) {
+        console.log("Error!")
+        q.reject(newTaskDetails)
+      })
+      return q.promise
+    }
+
+    console.log('yup I am still in the newTaskService')
+}])
+
+
