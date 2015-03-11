@@ -9,7 +9,7 @@ RSpec.describe AssignmentsController, type: :controller do
       expect(response.status).to eq(200)
     end
 
-    it "returns more things than active routes" do
+    it "returns completed assignments" do
       user = FactoryGirl.create(:user)
       category = FactoryGirl.create(:category)
       category_id = category.id
@@ -23,6 +23,40 @@ RSpec.describe AssignmentsController, type: :controller do
       actives = user.active_tasks
       get 'index', {user_id: user.id}
       expect(JSON.parse(response.body).length).to eq(1)
+    end
+    it "returns favorable sentiment" do
+      user = FactoryGirl.create(:user)
+      category = FactoryGirl.create(:category)
+      category_id = category.id
+      amount = 3
+      period = 1
+      args = {category_id: category_id, amount: amount, period: period}
+      5.times{category.tasks << FactoryGirl.create(:task)}
+      user.subscribe(args)
+      assignment = Assignment.last
+      put 'complete', id: assignment.id
+      actives = user.active_tasks
+      Vote.create({user_id: user.id, votable_id: assignment.task_id, votable_type: "Task", magnitude: 1})
+      get 'index', {user_id: user.id}
+      data = JSON.parse(response.body)
+      expect(data[0]["past_vote"]).to eq(1)
+    end
+    it "returns favorable sentiment" do
+      user = FactoryGirl.create(:user)
+      category = FactoryGirl.create(:category)
+      category_id = category.id
+      amount = 3
+      period = 1
+      args = {category_id: category_id, amount: amount, period: period}
+      5.times{category.tasks << FactoryGirl.create(:task)}
+      user.subscribe(args)
+      assignment = Assignment.last
+      put 'complete', id: assignment.id
+      actives = user.active_tasks
+      Vote.create({user_id: user.id, votable_id: assignment.task_id, votable_type: "Task", magnitude: -1})
+      get 'index', {user_id: user.id}
+      data = JSON.parse(response.body)
+      expect(data[0]["past_vote"]).to eq(-1)
     end
   end
 
