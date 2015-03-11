@@ -27,7 +27,7 @@ racts.service('availableResolver', ['$http', '$q', 'availableModel','session', f
 }])
 
 
-racts.service('availableService', ['$http', '$q', 'availableModel', 'session', function($http, $q, availableModel, session ) {
+racts.service('availableService', ['$http', '$q', 'availableModel', 'session', 'antiRefreshService', function($http, $q, availableModel, session, antiRefreshService ) {
 
 
 	this.availableModel = availableModel
@@ -37,8 +37,7 @@ racts.service('availableService', ['$http', '$q', 'availableModel', 'session', f
 	  var period = Number(prompt("Enter the period of subscription in years")) || 4;
 	  $http.post('/users/' + session.currentUser().id + '/categories/' + category.id + '/subscribe?amount=' + amount + '&period=' + period)
 	  	.success(function(response) {
-	  		alert("You have been subscribed to " + amount + " task(s) in " +  category.name + " category for a period of " + period + " year(s)")
-	  		console.log(response)
+	  		antiRefreshService.reloadAvailable(true)
 	  	})
 	  	.error(function(response) {
 	  		console.log("ERROR!")
