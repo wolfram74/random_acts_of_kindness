@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def login
-    object = {success: false,user: nil, username:}
+    object = {success: false,user: nil, username: nil}
     candidate = User.find_by(email: params[:credentials][:email])
     if candidate
       if candidate.password == params[:credentials][:password]
