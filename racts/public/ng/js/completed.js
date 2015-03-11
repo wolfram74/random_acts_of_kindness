@@ -71,15 +71,7 @@ racts.controller('completedTasksController', ['$http', '$scope', 'completedTasks
 
   $scope.assignments = completedTasksService.completedTasksModel.assignments
 
-  $scope.ucount=0;
-  $scope.lcount=0;
 
-  $scope.lStyle= {
-        "background-color":"green"
-    }
-  $scope.uStyle= {
-        "background-color":"red"
-    }
 
   $scope.likeTask =  function(task, index) {
 

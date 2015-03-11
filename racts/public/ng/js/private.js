@@ -26,9 +26,36 @@ racts.service('subscriptionsResolver', ['$http', '$q', 'subscriptionsModel', 'se
 }])
 
 
-racts.service('subscriptionsService', ['$http', '$q', 'subscriptionsModel', function($http, $q, subscriptionsModel ) {
+racts.service('subscriptionsService', ['$http', '$q', 'subscriptionsModel', 'session', function($http, $q, subscriptionsModel, session ) {
 
 		this.subscriptionsModel = subscriptionsModel
+
+    this.like = function(subscription){
+      console.log("http://localhost:3000/users/" + session.currentUser().id + "/Category/" + subscription.id + '/vote?change=1')
+
+      $http.post("http://localhost:3000/users/" + session.currentUser().id + "/Category/" + subscription.id + '/vote?change=1')
+        .success(function(response) {
+          console.log(response)
+          console.log("DONE!")
+        })
+        .error(function(response) {
+          console.log("Rejected!")
+        })
+      }
+
+
+    this.unlike = function(subscription){
+     console.log("http://localhost:3000/users/" + session.currentUser().id + "/Category/" + subscription.id + '/vote?change=-1')
+      $http.post("http://localhost:3000/users/" + session.currentUser().id + "/Category/" + subscription.id + '/vote?change=-1')
+        .success(function(response) {
+          console.log(response)
+          console.log("DONE!")
+        })
+        .error(function(response) {
+          console.log("Rejected!")
+        })
+      }
+
 
 }])
 
@@ -58,6 +85,19 @@ racts.controller('subscriptionsController', ['$http', '$scope', 'subscriptionsSe
   		console.log("ERROR!")
   	})
   }
+
+  $scope.likeTask =  function(subscription, index) {
+
+
+         subscriptionsService.like(subscription)
+
+  }
+
+  $scope.unlikeTask =  function(subscription, index) {
+
+         subscriptionsService.unlike(subscription)
+  }
+
 }])
 
 

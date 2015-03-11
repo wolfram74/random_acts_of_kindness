@@ -1,5 +1,12 @@
 <div>
   <div class="item item-text-wrap">
-    <a><span ng-click="showTasks($index)"> {{subscription.name}}</span></a> &nbsp &nbsp &nbsp<button ng-click="unsubscribe(subscription, $index) ; myStyle={'text-decoration': 'line-through'}">Unsubscribe</button>
+    <a><span ng-click="showTasks($index)"> {{subscription.name}}</span></a> &nbsp &nbsp &nbsp<button ng-click="unsubscribe(subscription, $index) ; myStyle={'text-decoration': 'line-through'}">Unsubscribe</button>&nbsp &nbsp &nbsp
+
+
+    <button ng-click="likeTask(subscription,$index) ; lcount=1 ; ucount=0" ng-class="subscription.past_vote === 1 ? 'lStyle' : 'nStyle'">Like</button>
+
+    <button ng-click="unlikeTask(subscription,$index) ; ucount=1 ; lcount=0" ng-class="subscription.past_vote === -1 ? 'uStyle' : 'nStyle'">Unlike</button>&nbsp &nbsp &nbsp
+
+    <span type="text">Past Vote | {{subscription.past_vote}}</span>
   </div>
 </div>
