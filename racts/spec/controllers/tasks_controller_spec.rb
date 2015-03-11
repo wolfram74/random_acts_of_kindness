@@ -22,12 +22,13 @@ RSpec.describe TasksController, type: :controller do
     end
 
     it "can hit post route" do
-      post "create", {}
+      post "create", {details: {}}
       expect(response.status).to eq(200)
     end
     it "can create with post route" do
+      args = {name: "%x" % rand(10**6), description:"a thing", cost_estimate: 5}
       expect{
-        post "create", {name: "%x" % rand(10**6), description:"a thing", cost_estimate: 5} 
+        post "create",  {details: args}
       }.to change{Task.count}
     end
   end
