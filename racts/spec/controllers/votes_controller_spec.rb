@@ -8,12 +8,19 @@ RSpec.describe VotesController, type: :controller do
       post "cast_vote", {user_id: user.id, class_name: task.class.to_s, id: task.id, change: -1}
       expect(response.status).to eq(200)
     end
-    it "hitting route changes score" do
+    it "hitting route changes score tasks" do
       user = FactoryGirl.create(:user)
       task = FactoryGirl.create(:task)
       expect{
         post "cast_vote", {user_id: user.id, class_name: task.class.to_s, id: task.id, change: -1}
         }.to change{Task.last.score}
+    end
+    it "hitting route changes score for categories" do
+      user = FactoryGirl.create(:user)
+      category = FactoryGirl.create(:category)
+      expect{
+        post "cast_vote", {user_id: user.id, class_name: category.class.to_s, id: category.id, change: -1}
+        }.to change{Category.last.score}
     end
     it "hitting route over rides old vote" do
       user = FactoryGirl.create(:user)
