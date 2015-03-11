@@ -141,6 +141,7 @@ body{
 
 .lStyle {
     background-color: green;
+    color: white;
   }
 
   .nStyle {
@@ -149,4 +150,6 @@ body{
 
   .uStyle {
     background-color: red;
+    color: white;
   }
+
