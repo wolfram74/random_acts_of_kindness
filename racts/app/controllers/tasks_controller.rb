@@ -6,11 +6,12 @@ class TasksController < ApplicationController
   end
 
   def create #expects params-> :name, :description, :cost_estimate
-    Task.create({
-      name: params[:name], 
-      description: params[:description], 
-      cost_estimate: params[:cost_estimate], 
-      public: false})
-    render json: {}
+    args = params[:details]
+    args[:public] = false
+    Task.create(name: args[:name],
+                description: args[:description],
+                cost_estimate: args[:cost_estimate],
+                public: args[:public],)
+    render json: {succes: true}
   end
 end

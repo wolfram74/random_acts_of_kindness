@@ -8,12 +8,13 @@ class ApplicationController < ActionController::Base
   end
 
   def login
-    object = {success: false,user: nil}
+    object = {success: false,user: nil, username: nil}
     candidate = User.find_by(email: params[:credentials][:email])
     if candidate
       if candidate.password == params[:credentials][:password]
         object[:success] = true
         object[:user] = candidate.id
+        object[:username] = candidate.username
         render json: object
       else 
         render json: object
