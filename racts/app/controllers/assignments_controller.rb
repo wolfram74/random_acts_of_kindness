@@ -1,6 +1,7 @@
 class AssignmentsController < ApplicationController
   def index
     output = User.find(params[:user_id]).assignments_to_tasks
+    # p output
     render json: output
   end
 

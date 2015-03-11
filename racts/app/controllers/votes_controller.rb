@@ -18,7 +18,8 @@ class VotesController < ApplicationController
       vote.magnitude = magnitude
       vote.save
     end
+    result = Vote.find_by({user_id: params[:user_id], votable_id: params[:id], votable_type: params[:class_name]})
     Vote.update_object(params[:class_name], params[:id])
-    render json: {success: true}
+    render json: {success: true, object: result}
   end
 end
