@@ -19,12 +19,12 @@
           <form>
             <br>
             <p>Task Name</p>
-            <input type="text" placeholder="Task Name">
+            <input type="text" placeholder="Task Name" ng-model='newTaskDetails().name'>
             <p> Task Description </p>
-            <textarea name="description" placeholder="Task Description"></textarea>
+            <textarea name="description" placeholder="Task Description" ng-model='newTaskDetails().description'></textarea>
             <p> Cost Estimate</p>
-            <input type="text" placeholder="Task Cost Estimate">
-            <button ng-click="submit_new_task()">Submit</button>
+            <input type="text" placeholder="Task Cost Estimate" ng-model='newTaskDetails().cost_estimate' >
+            <button ng-click="submitNewTask()">Submit</button>
           </form>
        </div>
       </div>

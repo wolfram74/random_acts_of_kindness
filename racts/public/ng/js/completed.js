@@ -89,15 +89,17 @@ racts.controller('completedTasksController', ['$http', '$scope', 'completedTasks
   var newTaskDetails = { name: "", description: "", cost_estimate: ""}
   $scope.newTaskDetails = function(){ return newTaskDetails }
 
-  $scope.submit_new_task = function() {
+  $scope.submitNewTask = function() {
     var q = $q.defer()
     console.log("I just entered the newTaskController");
     $http.post('http://localhost:3000/tasks', {details: newTaskDetails})
       .success(function(response) {
-         var newTaskDetails = { name: details.name, description: details.description, cost_estimate: Number(details.cost_estimate)}
-         q.resolve(newTaskDetails)
+        console.log("Post route works")
          console.log("I am in the newTaskController");
          console.log(response)
+         newTaskDetails = { name: "", description: "", cost_estimate: ""}
+         alert("Your suggesstion has been successfully posted!");
+         console.log("Your suggesstion has been successfully posted");
       })
       .error(function(response) {
         console.log("Error!")
@@ -106,12 +108,6 @@ racts.controller('completedTasksController', ['$http', '$scope', 'completedTasks
       return q.promise
     }
 
-    console.log('yup I am still in the newTaskService')
+    console.log('yup I am still in the newTaskController')
 
 }])
-
-/////////////////////////
-//#expects params {name: , description:, cost_estimate: }
-
-
-
