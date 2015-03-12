@@ -6,6 +6,8 @@ category2 = {name: "Family Kindness", description:"Show the people you live with
 category3 = {name: "Significant Other", description:"Surprise your SO with some nice actions", public: false}
 category4 = {name: "Big Ol' list of Kindess", description:"Lots of things to do to help others.", public: true}
 category5 = {name: "Good Netizen Behavior", description:"The internet can suck at times, a few ways to make it better.", public: true}
+category6 = {name: "Bootcamp friendliness", description:"DBC is hard, being nice to each other can make it easier.", public: true}
+
 
 task1 = {name: "clean kitchen", description:"Spend 5 minutes tidying the kitchen a bit", cost_estimate: 0 ,public: true}
 task2 = {name: "clean living room", description:"Spend 5 minutes cleaning up living room, cables and whatnot", cost_estimate: 0 ,public: true}
@@ -38,7 +40,11 @@ extra_tasks << {name: "Mini Investor", description:"Go start an account at KIVA.
 
 user1 = User.create(admin)
 user2 = User.create(jordan)
-
+dbc_tasks = []
+dbc_tasks <<{name: "Game shelf", description:"Go tidy the game shelf a little", cost_estimate: 0 ,public: true}
+dbc_tasks <<{name: "Anti-litterbug", description:"Find some litter and put it in the trash bin.", cost_estimate: 0 ,public: true}
+dbc_tasks <<{name: "Coach appreciation", description:"Express some gratitude to one of the coaches that's helped you.", cost_estimate: 0 ,public: true}
+dbc_tasks <<{name: "Cohort appreciation", description:"Express some appreciation for a cohort mate who's made your time here easier.", cost_estimate: 0 ,public: true}
 
 
 
@@ -47,14 +53,8 @@ user1.categories << Category.create(category1) #family [0]
 user1.categories << Category.create(category2) #office [1]
 user1.categories << Category.create(category3) #significant other [2]
 big_ol_list = Category.create(category4)
-extra_tasks.each do |task|
-  big_ol_list.tasks << Task.create(task)
-end
 netizen = Category.create(category5)
-big_ol_list.tasks[10..-1].each do |task|
-  netizen.tasks << task
-end
-
+dbc_list = Category.create(category6)
 user1.categories[0].tasks << Task.create(task1)
 user1.categories[0].tasks << Task.create(task2)
 user1.categories[0].tasks << Task.create(task4)
@@ -64,6 +64,15 @@ user1.categories[1].tasks << Task.create(task4)
 user1.categories[2].tasks << Task.create(task1)
 user1.categories[2].tasks << Task.create(task5)
 big_ol_list.tasks << Task.first(4)
+extra_tasks.each do |task|
+  big_ol_list.tasks << Task.create(task)
+end
+big_ol_list.tasks[10..-1].each do |task|
+  netizen.tasks << task
+end
+dbc_tasks.each do |task|
+  dbc_list.tasks << Task.create(task)
+end
 
 user1.subscribe({category_id: 1, amount: 2, period: 1})
 user1.subscribe({category_id: big_ol_list.id, amount: 5, period: 1})
