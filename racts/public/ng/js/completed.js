@@ -67,14 +67,11 @@ racts.service('completedTasksService', ['$http', '$q', 'completedTasksModel','se
 
 
 
-racts.controller('completedTasksController', ['$http', '$scope', 'completedTasksService', function($http, $scope, completedTasksService){
+racts.controller('completedTasksController', ['$http', '$scope', 'completedTasksService','$q', function($http, $scope, completedTasksService, $q){
 
   $scope.assignments = completedTasksService.completedTasksModel.assignments
 
-
-
   $scope.likeTask =  function(task, index) {
-
          completedTasksService.like(task)
 
   }
@@ -88,5 +85,29 @@ racts.controller('completedTasksController', ['$http', '$scope', 'completedTasks
    $scope.lvisible = false;
    $scope.uvisible = false;
 
-}])
+  console.log('I am a new task')
+  var newTaskDetails = { name: "", description: "", cost_estimate: ""}
+  $scope.newTaskDetails = function(){ return newTaskDetails }
 
+  $scope.submitNewTask = function() {
+    var q = $q.defer()
+    console.log("I just entered the newTaskController");
+    $http.post('http://localhost:3000/tasks', {details: newTaskDetails})
+      .success(function(response) {
+        console.log("Post route works")
+         console.log("I am in the newTaskController");
+         console.log(response)
+         newTaskDetails = { name: "", description: "", cost_estimate: ""}
+         alert("Your suggesstion has been successfully posted!");
+         console.log("Your suggesstion has been successfully posted");
+      })
+      .error(function(response) {
+        console.log("Error!")
+        q.reject(newTaskDetails)
+      })
+      return q.promise
+    }
+
+    console.log('yup I am still in the newTaskController')
+
+}])
