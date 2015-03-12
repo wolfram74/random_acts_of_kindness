@@ -67,14 +67,11 @@ racts.service('completedTasksService', ['$http', '$q', 'completedTasksModel','se
 
 
 
-racts.controller('completedTasksController', ['$http', '$scope', 'completedTasksService', function($http, $scope, completedTasksService){
+racts.controller('completedTasksController', ['$http', '$scope', 'completedTasksService','$q', function($http, $scope, completedTasksService, $q){
 
   $scope.assignments = completedTasksService.completedTasksModel.assignments
 
-
-
   $scope.likeTask =  function(task, index) {
-
          completedTasksService.like(task)
 
   }
@@ -88,22 +85,19 @@ racts.controller('completedTasksController', ['$http', '$scope', 'completedTasks
    $scope.lvisible = false;
    $scope.uvisible = false;
 
-}])
-
-/////////////////////////
-//#expects params {name: , description:, cost_estimate: }
-
-racts.controller('newTaskController', ['$http','$q',function($http, $q){
   console.log('I am a new task')
   var newTaskDetails = { name: "", description: "", cost_estimate: ""}
   $scope.newTaskDetails = function(){ return newTaskDetails }
 
-  $scope.submit = function() {
+  $scope.submit_new_task = function() {
     var q = $q.defer()
+    console.log("I just entered the newTaskController");
     $http.post('http://localhost:3000/tasks', {details: newTaskDetails})
       .success(function(response) {
-         var newTaskDetails = { name: newTaskDetails.name, description: newTaskDetails.description, cost_estimate: Number(newTaskDetails.cost_estimate)}
+         var newTaskDetails = { name: details.name, description: details.description, cost_estimate: Number(details.cost_estimate)}
          q.resolve(newTaskDetails)
+         console.log("I am in the newTaskController");
+         console.log(response)
       })
       .error(function(response) {
         console.log("Error!")
@@ -113,6 +107,11 @@ racts.controller('newTaskController', ['$http','$q',function($http, $q){
     }
 
     console.log('yup I am still in the newTaskService')
+
 }])
+
+/////////////////////////
+//#expects params {name: , description:, cost_estimate: }
+
 
 
