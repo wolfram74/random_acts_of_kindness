@@ -10,13 +10,11 @@
         <div>
           <completed-task ng-repeat="(assignmentId, task) in assignments"></completed-task>
        </div>
-      </div>
 
-      <div class="item item-divider" id="private_lists">
-        <br>
+        <div class="item item-divider" id="private_lists">
         Suggest a New Task?
         <div>
-          <form>
+          <form >
             <br>
             <p>Task Name</p>
             <input type="text" placeholder="Task Name" ng-model='newTaskDetails().name'>
@@ -28,6 +26,9 @@
           </form>
        </div>
       </div>
+      </div>
+
+
   </div>
 </ion-content>
 
