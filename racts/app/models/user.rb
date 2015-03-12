@@ -22,8 +22,8 @@ class User < ActiveRecord::Base
 
   def subscribe(args)
     args[:user_id] = self.id
-    Subscription.create(args)
-    self.subscriptions.last.assign_new_tasks
+    subscription = Subscription.create(args)
+    subscription.assign_new_tasks
   end
 
   def active_tasks #fetch unfinished tasks
@@ -33,6 +33,14 @@ class User < ActiveRecord::Base
       task = task.to_json
       new_format = JSON.parse(task)
       new_format[:assignment_id] = assignment.id
+      vote = Vote.find_by(votable_id: assignment.task_id, votable_type:"Task", user_id: self.id)
+      if vote.nil?
+        new_format[:past_vote] = 0
+      elsif vote.magnitude <0
+        new_format[:past_vote] = -1
+      else
+        new_format[:past_vote] = 1        
+      end
       new_format
     end
     return tasks
@@ -47,6 +55,14 @@ class User < ActiveRecord::Base
       new_format = JSON.parse(task)
       new_format[:assignment_id] = assignment.id
       new_format[:completed_on] = assignment.completed_on
+      vote = Vote.find_by(votable_id: assignment.task_id, votable_type:"Task", user_id: self.id)
+      if vote.nil?
+        new_format[:past_vote] = 0
+      elsif vote.magnitude <0
+        new_format[:past_vote] = -1
+      else
+        new_format[:past_vote] = 1        
+      end
       new_format
     end
     return tasks
@@ -63,7 +79,14 @@ class User < ActiveRecord::Base
         category = category.to_json
         category = JSON.parse(category)
         category[:subscription_id] = subscription.id
-        p category
+        vote = Vote.find_by(votable_id: subscription.category_id, votable_type:"Category", user_id: self.id)
+        if vote.nil?
+          category[:past_vote] = 0
+        elsif vote.magnitude <0
+          category[:past_vote] = -1
+        else
+          category[:past_vote] = 1        
+        end
         category
       end
     end

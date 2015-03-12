@@ -1,6 +1,16 @@
+
+
 <div class="item item-text-wrap">
  <span>{{task.description}}</span> &nbsp &nbsp &nbsp
 
  <br><br>
+<button ng-click="likeTask(task,$index) ; lcount=1 ; ucount=0" ng-class="task.past_vote === 1 ? 'lStyle' : 'nStyle'">Like</button>&nbsp &nbsp &nbsp
+
+<button ng-click="unlikeTask(task,$index) ; ucount=1 ; lcount=0" ng-class="task.past_vote === -1 ? 'uStyle' : 'nStyle'">Unlike</button>&nbsp &nbsp &nbsp
 
 </div>
+
+
+
+
+

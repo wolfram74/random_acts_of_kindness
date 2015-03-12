@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     if password_mismatch
       render json: object
     else
-      args = {email: params[:credentials][:email], password: params[:credentials][:password]}
+      args = {email: params[:credentials][:email], password: params[:credentials][:password], username: params[:credentials][:username]}
       new_user = User.new(args)
       new_user.save
       if new_user.errors.any?

@@ -1,0 +1,25 @@
+completed state, CHECK
+register CHECK 
+public.js: alert statements, subscribe CHECK
+ 
+
+config.js:
+
+ random state
+
+
+auth:
+
+
+
+private.js unsubscribe CHECK
+
+
+new directives
+update index.html 
+
+
+
+https://github.com/driftyco/ionic-cli/issues/127
+https://www.youtube.com/watch?v=-6MBCwsgQp4
+http://codepen.io/TimothyKrell/pen/bnukjnu

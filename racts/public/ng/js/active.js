@@ -34,13 +34,14 @@ racts.service('activeTasksResolver', ['$http', '$q', 'activeTasksModel', 'sessio
 }])
 
 
-racts.service('activeTasksService', ['$http', '$q', 'activeTasksModel', function($http, $q, activeTasksModel ) {
+racts.service('activeTasksService', ['$http', '$q', 'activeTasksModel', 'antiRefreshService', function($http, $q, activeTasksModel, antiRefreshService ) {
 
 		this.activeTasksModel = activeTasksModel
 		this.complete = function(task){
 			$http.put("http://localhost:3000/assignments/" + task.assignment_id+'/complete')
 				.success(function(response) {
 					console.log("DONE!")
+					antiRefreshService.reloadActive()
 		    })
 		    .error(function(response) {
 		    	console.log("Rejected!")

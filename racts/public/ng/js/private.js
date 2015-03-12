@@ -26,15 +26,40 @@ racts.service('subscriptionsResolver', ['$http', '$q', 'subscriptionsModel', 'se
 }])
 
 
-racts.service('subscriptionsService', ['$http', '$q', 'subscriptionsModel', function($http, $q, subscriptionsModel ) {
+racts.service('subscriptionsService', function($http, $q, subscriptionsModel, session, antiRefreshService ) {
 
 		this.subscriptionsModel = subscriptionsModel
 
-}])
+    this.like = function(subscription){
+      console.log("http://localhost:3000/users/" + session.currentUser().id + "/Category/" + subscription.id + '/vote?change=1')
+
+      $http.post("http://localhost:3000/users/" + session.currentUser().id + "/Category/" + subscription.id + '/vote?change=1')
+        .success(function(response) {
+          antiRefreshService.reloadSubscriptions(false)
+        })
+        .error(function(response) {
+          console.log("Rejected!")
+        })
+      }
+
+
+    this.unlike = function(subscription){
+     console.log("http://localhost:3000/users/" + session.currentUser().id + "/Category/" + subscription.id + '/vote?change=-1')
+      $http.post("http://localhost:3000/users/" + session.currentUser().id + "/Category/" + subscription.id + '/vote?change=-1')
+        .success(function(response) {
+          antiRefreshService.reloadSubscriptions(false)
+        })
+        .error(function(response) {
+          console.log("Rejected!")
+        })
+      }
+
+
+})
 
 
 
-racts.controller('subscriptionsController', ['$http', '$scope', 'subscriptionsService', 'subscriptionsResolver', 'loadSubscriptionTasksService', 'session', function($http, $scope, subscriptionsService, subscriptionsResolver, loadSubscriptionTasksService, session){
+racts.controller('subscriptionsController', ['$http', '$scope', 'subscriptionsService', 'subscriptionsResolver', 'loadSubscriptionTasksService', 'session', 'antiRefreshService', function($http, $scope, subscriptionsService, subscriptionsResolver, loadSubscriptionTasksService, session, antiRefreshService){
 
 
 
@@ -52,12 +77,25 @@ racts.controller('subscriptionsController', ['$http', '$scope', 'subscriptionsSe
   	$http.delete('/users/' + session.currentUser().id + '/subscriptions/' + subscription.subscription_id)
   	.success(function(response) {
   		console.log(response)
-      alert("You have been unsubscribed from " + subscription.name + " category")
+  		antiRefreshService.reloadSubscriptions(true)
   	})
   	.error(function(response) {
   		console.log("ERROR!")
   	})
   }
+
+  $scope.likeTask =  function(subscription, index) {
+
+        console.log(subscription)
+         subscriptionsService.like(subscription)
+
+  }
+
+  $scope.unlikeTask =  function(subscription, index) {
+
+         subscriptionsService.unlike(subscription)
+  }
+
 }])
 
 

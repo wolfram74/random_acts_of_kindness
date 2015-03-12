@@ -20,6 +20,17 @@ RSpec.describe TasksController, type: :controller do
       results.sort!
       expect(results.first).to_not eq(results.last)
     end
+
+    it "can hit post route" do
+      post "create", {details: {}}
+      expect(response.status).to eq(200)
+    end
+    it "can create with post route" do
+      args = {name: "%x" % rand(10**6), description:"a thing", cost_estimate: 5}
+      expect{
+        post "create",  {details: args}
+      }.to change{Task.count}
+    end
   end
 
 end
