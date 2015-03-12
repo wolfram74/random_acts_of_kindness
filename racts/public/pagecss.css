@@ -6,13 +6,10 @@
 
   background-color: rgb(140,189,207,);
   background-color: rgba(140,189,207, 0.4);
-  height: 1000px;
+
 }
 
 
-body{
-  overflow: scroll;
-}
 
 .navbar{
   width: 100%;
@@ -20,7 +17,9 @@ body{
 }
 
 
-
+button {
+  border-radius: 10px;
+}
 
 
 /*=======homepage.html========*/
