@@ -70,6 +70,7 @@ button {
 
 
 #navtext{
+  font-size: 20.2px;
   width: 600px;
   margin-right: auto;
   margin-left: auto;
@@ -97,7 +98,9 @@ form:hover > input{
   transition-delay:0.1s;
 }
 
-
+.smalltextbox{
+  visibility: visible;
+}
 
 
 
@@ -159,7 +162,7 @@ form:hover > input{
   font-size: 20px;
 }
 #private_lists{
-  text-align: center;
+  text-align: left;
   max-height: 400px;
   overflow: scroll;
   background-color: #88dddd;
@@ -175,6 +178,9 @@ form:hover > input{
   margin-right: auto;
   margin-left: auto;
   margin:5%;
+}
+.card{
+  overflow: show;
 }
 
 #public_task_result_info{
@@ -314,12 +320,12 @@ a:active.darkcolor {
     color: white;
   }
 
-  .nStyle {
-    background-color: none;
-  }
+.nStyle {
+  background-color: none;
+}
 
-  .uStyle {
-    background-color: red;
-    color: white;
-  }
+.uStyle {
+  background-color: red;
+  color: white;
+}
 

@@ -14,14 +14,14 @@
         <div class="item item-divider" id="private_lists">
         Suggest a New Task?
         <div>
-          <form >
+          <form>
             <br>
             <p>Task Name</p>
-            <input type="text" placeholder="Task Name" ng-model='newTaskDetails().name'>
+            <input type="text" placeholder="Task Name" ng-model='newTaskDetails().name' class="smalltextbox">
             <p> Task Description </p>
             <textarea name="description" placeholder="Task Description" ng-model='newTaskDetails().description'></textarea>
             <p> Cost Estimate</p>
-            <input type="text" placeholder="Task Cost Estimate" ng-model='newTaskDetails().cost_estimate' >
+            <input type="text" placeholder="Task Cost Estimate" ng-model='newTaskDetails().cost_estimate' class="smalltextbox">
             <button ng-click="submitNewTask()">Submit</button>
           </form>
        </div>
