@@ -35,7 +35,7 @@ racts.service('completedTasksResolver', ['$http', '$q', 'completedTasksModel', '
 }])
 
 
-racts.service('completedTasksService', ['$http', '$q', 'completedTasksModel','session', function($http, $q, completedTasksModel, session ) {
+racts.service('completedTasksService', function($http, $q, completedTasksModel, session, antiRefreshService ) {
 
     this.completedTasksModel = completedTasksModel
 
@@ -43,8 +43,7 @@ racts.service('completedTasksService', ['$http', '$q', 'completedTasksModel','se
       console.log("http://localhost:3000/users/" + session.currentUser().id + "/Task/" + task.id + '/vote?change=1')
       $http.post("http://localhost:3000/users/" + session.currentUser().id + "/Task/" + task.id + '/vote?change=1')
         .success(function(response) {
-          console.log(response)
-          console.log("DONE!")
+          antiRefreshService.reloadCompleted()
         })
         .error(function(response) {
           console.log("Rejected!")
@@ -56,18 +55,17 @@ racts.service('completedTasksService', ['$http', '$q', 'completedTasksModel','se
       console.log("http://localhost:3000/users/" + session.currentUser().id + "/Task/" + task.id + '/vote?change=-1');
       $http.post("http://localhost:3000/users/" + session.currentUser().id + "/Task/" + task.id + '/vote?change=-1')
         .success(function(response) {
-          console.log(response)
-          console.log("DONE!")
+          antiRefreshService.reloadCompleted()
         })
         .error(function(response) {
           console.log("Rejected!")
         })
       }
-}])
+})
 
 
 
-racts.controller('completedTasksController', ['$http', '$scope', 'completedTasksService','$q', function($http, $scope, completedTasksService, $q){
+racts.controller('completedTasksController', function($http, $scope, completedTasksService, $q){
 
   $scope.assignments = completedTasksService.completedTasksModel.assignments
 
@@ -77,8 +75,8 @@ racts.controller('completedTasksController', ['$http', '$scope', 'completedTasks
   }
 
   $scope.unlikeTask =  function(task, index) {
-
          completedTasksService.unlike(task)
+
 
   }
 
@@ -91,15 +89,10 @@ racts.controller('completedTasksController', ['$http', '$scope', 'completedTasks
 
   $scope.submitNewTask = function() {
     var q = $q.defer()
-    console.log("I just entered the newTaskController");
     $http.post('http://localhost:3000/tasks', {details: newTaskDetails})
       .success(function(response) {
-        console.log("Post route works")
-         console.log("I am in the newTaskController");
          console.log(response)
          newTaskDetails = { name: "", description: "", cost_estimate: ""}
-         alert("Your suggesstion has been successfully posted!");
-         console.log("Your suggesstion has been successfully posted");
       })
       .error(function(response) {
         console.log("Error!")
@@ -110,4 +103,4 @@ racts.controller('completedTasksController', ['$http', '$scope', 'completedTasks
 
     console.log('yup I am still in the newTaskController')
 
-}])
+})

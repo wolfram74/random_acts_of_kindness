@@ -79,6 +79,7 @@ racts.service('antiRefreshService', function($http, $q, availableModel, subscrip
         console.log('error with fetching completed tasks')
       })
 	}
+	this.reloadCompleted  = reloadCompleted
 
 
 

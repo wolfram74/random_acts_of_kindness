@@ -26,7 +26,7 @@ racts.service('subscriptionsResolver', ['$http', '$q', 'subscriptionsModel', 'se
 }])
 
 
-racts.service('subscriptionsService', ['$http', '$q', 'subscriptionsModel', 'session', function($http, $q, subscriptionsModel, session ) {
+racts.service('subscriptionsService', function($http, $q, subscriptionsModel, session, antiRefreshService ) {
 
 		this.subscriptionsModel = subscriptionsModel
 
@@ -35,8 +35,7 @@ racts.service('subscriptionsService', ['$http', '$q', 'subscriptionsModel', 'ses
 
       $http.post("http://localhost:3000/users/" + session.currentUser().id + "/Category/" + subscription.id + '/vote?change=1')
         .success(function(response) {
-          console.log(response)
-          console.log("DONE!")
+          antiRefreshService.reloadSubscriptions(false)
         })
         .error(function(response) {
           console.log("Rejected!")
@@ -48,8 +47,7 @@ racts.service('subscriptionsService', ['$http', '$q', 'subscriptionsModel', 'ses
      console.log("http://localhost:3000/users/" + session.currentUser().id + "/Category/" + subscription.id + '/vote?change=-1')
       $http.post("http://localhost:3000/users/" + session.currentUser().id + "/Category/" + subscription.id + '/vote?change=-1')
         .success(function(response) {
-          console.log(response)
-          console.log("DONE!")
+          antiRefreshService.reloadSubscriptions(false)
         })
         .error(function(response) {
           console.log("Rejected!")
@@ -57,7 +55,7 @@ racts.service('subscriptionsService', ['$http', '$q', 'subscriptionsModel', 'ses
       }
 
 
-}])
+})
 
 
 
@@ -88,7 +86,7 @@ racts.controller('subscriptionsController', ['$http', '$scope', 'subscriptionsSe
 
   $scope.likeTask =  function(subscription, index) {
 
-
+        console.log(subscription)
          subscriptionsService.like(subscription)
 
   }

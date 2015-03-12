@@ -5,6 +5,7 @@ racts.service('authService', ['$http', '$q', function($http, $q){
 	this.credentials = function(){return credentials}
 
 	var authenticate = function(defer){
+		console.log(credentials)
 		$http.post('/login', {credentials: credentials})
 		.success(function(data){
 			if(data.success === false){
@@ -37,8 +38,10 @@ racts.service('registerService', ['$http','$q',function($http, $q){
 
   this.submit = function() {
   	var q = $q.defer()
+  	console.log(userDetails)
     $http.post('http://localhost:3000/users', {credentials: userDetails})
       .success(function(response) {
+      	console.log(response)
          var currentUser = { email: userDetails.email, id: response.user}
          q.resolve(currentUser)
       })
