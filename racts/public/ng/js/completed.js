@@ -93,6 +93,7 @@ racts.controller('completedTasksController', function($http, $scope, completedTa
       .success(function(response) {
          console.log(response)
          newTaskDetails = { name: "", description: "", cost_estimate: ""}
+         alert("Your Task is in the review phase, and will be added if approved by admin.")
       })
       .error(function(response) {
         console.log("Error!")
